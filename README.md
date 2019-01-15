@@ -19,9 +19,9 @@ After installing the tools, do this in the project directory:
 
 After this, you should have a binary executable EntityManipulatorExe in the build directory.
 
-You can execute it and see the results:
+You can then execute it and see the results:
 
-´´´Antti-iMac:build anttijuustila$ ./EntityManipulatorExe 
+```Antti-iMac:build anttijuustila$ ./EntityManipulatorExe 
 Marshal objects to XML...
 <?xml version="1.0"?>
 <entity name="Level 0">
@@ -42,7 +42,8 @@ Marshal objects to JSON...
       }
     }
   }
-}´´´
+}
+```
 
 ## Who made this
 
