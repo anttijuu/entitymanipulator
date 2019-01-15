@@ -35,7 +35,7 @@ void JSONMarshaller::manipulate(Entity & entity) {
 	static int topLevel = 0;
    // First find the topmost parent (entity who's parent is null).
 	Entity * parent = entity.getParent();
-	if (0 != parent) {
+	if (nullptr != parent) {
 		topLevel = ++levels;
 		parent->accept(*this);
 		levels--;

@@ -26,7 +26,7 @@ class XMLMarshaller : public EntityManipulator {
 	
 public:
 	XMLMarshaller(std::ostream & outStream);
-	void manipulate(Entity & entity);
+	void manipulate(Entity & entity) override;
 	
 private:
 	/** The output stream where the marshaller writes the entity objects as xml. */

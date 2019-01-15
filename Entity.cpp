@@ -13,7 +13,7 @@
  Constructor for initializing Entities. Parent entity is set to null.
  @param name A name for the entity.
  */
-Entity::Entity (const std::string & name) : Entity(name, 0) {
+Entity::Entity (const std::string & name) : Entity(name, nullptr) {
 }
 
 /**
