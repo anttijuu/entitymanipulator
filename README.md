@@ -49,5 +49,5 @@ Marshal objects to JSON...
 
 ## Who made this
 
-(c) Antti Juustila, Study Program of Information Processing Science, University of Oulu, Finland
-email: firstname.lastname at oulu dot fi
+Originally developed by Toni Räisäinen, modified by Antti Juustila
+Study Program of Information Processing Science, University of Oulu, Finland
