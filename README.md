@@ -21,7 +21,9 @@ After this, you should have a binary executable EntityManipulatorExe in the buil
 
 You can then execute it and see the results:
 
-```Antti-iMac:build anttijuustila$ ./EntityManipulatorExe 
+
+```
+Antti-iMac:build anttijuustila$ ./EntityManipulatorExe 
 Marshal objects to XML...
 <?xml version="1.0"?>
 <entity name="Level 0">
