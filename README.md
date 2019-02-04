@@ -10,7 +10,7 @@ If you wish, you can build the app and run it to see how it works.
 
 What you need is a C++ compiler and [CMake](https://cmake.org) build system.
 
-After installing the tools, do this in the project directory:
+After installing the tools, do this in the project root directory:
 
 1. mkdir build
 2. cd build
