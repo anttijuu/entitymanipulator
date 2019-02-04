@@ -92,5 +92,5 @@ Marshal objects to JSON...
 
 ## Who made this
 
-Originally developed by Toni R‰is‰nen, modified by Antti Juustila
+Originally developed by Toni R√§is√§nen, modified by Antti Juustila
 Study Program of Information Processing Science, University of Oulu, Finland
