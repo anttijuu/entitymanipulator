@@ -105,5 +105,5 @@ Marshal objects to JSON...
 
 ## Who made this
 
-Originally developed by Toni Räisänen, modified by Antti Juustila (INTERACT Research Group)
+Originally developed by Toni Raeisaenen (trai), modified by Antti Juustila (INTERACT Research Group)
 Study Program of Information Processing Science, University of Oulu, Finland
