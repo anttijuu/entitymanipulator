@@ -49,6 +49,8 @@ Marshal objects to XML...
     </entity>
   </entity>
   <entity name="letters">
+    <entity name="B">
+    </entity>
     <entity name="A">
       <entity name="A.p">
       </entity>
@@ -85,6 +87,9 @@ Marshal objects to JSON...
     "name" : "letters",
     "children" : 
     [
+      {
+      "name" : "B"
+      },
       {
       "name" : "A",
       "children" : 

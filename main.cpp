@@ -36,6 +36,8 @@ int main(int argc, const char * argv[])
    
    thing1 = new Entity("letters");
    rootEntity.add(thing1);
+   thing2 = new Entity("B");
+   thing1->add(thing2);
    thing2 = new Entity("A");
    thing1->add(thing2);
    thing1 = new Entity("A.p");
