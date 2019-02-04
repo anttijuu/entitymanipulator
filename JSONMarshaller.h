@@ -21,13 +21,11 @@
 class JSONMarshaller : public EntityManipulator {
 public:
    JSONMarshaller(std::ostream & os);
-   void manipulate(Entity & entity) override;
+   void manipulate(Entity & entity, int level) override;
    
 private:
 	/** The output stream where the marshaller writes the entity objects as JSON. */
 	std::ostream & out;
-   /** Counter to use when moving up the parent links from Entity to it's parents. */
-	int levels;
 };
 
 #endif /* defined(__EntityManipulatorExample__JSONMarshaller__) */

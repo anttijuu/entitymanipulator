@@ -26,24 +26,67 @@ You can then execute it and see the results:
 Antti-iMac:build anttijuustila$ ./EntityManipulatorExe 
 Marshal objects to XML...
 <?xml version="1.0"?>
-<entity name="Level 0">
- <entity name="Level 1">
-  <entity name="Level 2">
-  </entity>
- </entity>
+<entity name="root">
+<entity name="numbers">
+<entity name="1">
+</entity>
+<entity name="2">
+<entity name="21">
+</entity>
+</entity>
+</entity>
+<entity name="letters">
+<entity name="A">
+<entity name="A.p">
+</entity>
+<entity name="A.q">
+</entity>
+</entity>
+</entity>
 </entity>
 
 Marshal objects to JSON...
 {
-  "entity" : {
-    "name : "Level 0"
-    "entity" : {
-      "name : "Level 1"
-      "entity" : {
-        "name : "Level 2"
-      }
-    }
-  }
+"name" : "root",
+"children" : 
+[
+{
+"name" : "numbers",
+"children" : 
+[
+{
+"name" : "1"
+},
+{
+"name" : "2",
+"children" : 
+[
+{
+"name" : "21"
+}
+]
+}
+]
+},
+{
+"name" : "letters",
+"children" : 
+[
+{
+"name" : "A",
+"children" : 
+[
+{
+"name" : "A.p"
+},
+{
+"name" : "A.q"
+}
+]
+}
+]
+}
+]
 }
 ```
 

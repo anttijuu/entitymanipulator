@@ -14,20 +14,45 @@
 
 int main(int argc, const char * argv[])
 {
-    // Create the marshaller..
-    XMLMarshaller xmlMarshaller(std::cout);
-    // Create the entity objects, second having the first as parent, third as second as a parent...
-    Entity level0Entity("Level 0");
-    Entity level1Entity("Level 1", &level0Entity);
-    Entity level2Entity("Level 2", &level1Entity);
-    // ...and give the marshaller to the level 2 entity.
-    std::cout << "Marshal objects to XML..." << std::endl;
-    level2Entity.accept(xmlMarshaller);
-    
-    std::cout << std::endl << "Marshal objects to JSON..." << std::endl;
-    JSONMarshaller jsonMarshaller(std::cout);
-    level2Entity.accept(jsonMarshaller);
-    
-    return 0;
+   // Create a following structure of objects...
+   /*
+            root
+         /       \
+      numbers   letters
+     /     \    /      \
+    1      2   A        B
+         /    / \
+       2.1   A.a  A.b
+   */
+   Entity rootEntity("root");
+   Entity * thing1 = new Entity("numbers");
+   rootEntity.add(thing1);
+   Entity * thing2 = new Entity("1");
+   thing1->add(thing2);
+   thing2 = new Entity("2");
+   thing1->add(thing2);
+   thing1 = new Entity("21");
+   thing2->add(thing1);
+   
+   thing1 = new Entity("letters");
+   rootEntity.add(thing1);
+   thing2 = new Entity("A");
+   thing1->add(thing2);
+   thing1 = new Entity("A.p");
+   thing2->add(thing1);
+   thing1 = new Entity("A.q");
+   thing2->add(thing1);
+
+   // ...and give the marshaller to the root entity.
+   std::cout << "Marshal objects to XML..." << std::endl;
+   // Create the marshaller..
+   XMLMarshaller xmlMarshaller(std::cout);
+   rootEntity.accept(xmlMarshaller);
+   
+   std::cout << std::endl << "Marshal objects to JSON..." << std::endl;
+   JSONMarshaller jsonMarshaller(std::cout);
+   rootEntity.accept(jsonMarshaller);
+   
+   return 0;
 }
 
