@@ -4,6 +4,19 @@ This project is meant to demonstrate the relationships between class diagrams an
 
 See the included png file for the class diagram, and study the code to see how the class diagram and code relate to each other.
 
+In the main.cpp an object structure is created. Then code demonstrates two ways (JSON & XML) to externalize the object structure into a stream. The object structure looks like this:
+
+```
+            root
+         /       \
+      numbers   letters
+     /     \    /      \
+    1      2   A        B
+         /    / \
+       2.1   A.a  A.b
+```
+
+
 ## Building and running the app
 
 If you wish, you can build the app and run it to see how it works.
@@ -92,5 +105,5 @@ Marshal objects to JSON...
 
 ## Who made this
 
-Originally developed by Toni R√§is√§nen, modified by Antti Juustila
+Originally developed by Toni R‰is‰nen, modified by Antti Juustila (INTERACT Research Group)
 Study Program of Information Processing Science, University of Oulu, Finland
