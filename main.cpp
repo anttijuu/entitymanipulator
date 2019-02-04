@@ -22,7 +22,7 @@ int main(int argc, const char * argv[])
      /     \    /      \
     1      2   A        B
          /    / \
-       2.1   A.a  A.b
+       21   A.p  A.q
    */
    Entity rootEntity("root");
    Entity * thing1 = new Entity("numbers");

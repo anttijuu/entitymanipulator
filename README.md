@@ -13,7 +13,7 @@ In the main.cpp an object structure is created. Then code demonstrates two ways 
      /     \    /      \
     1      2   A        B
          /    / \
-       2.1   A.a  A.b
+       21   A.p  A.q
 ```
 
 
