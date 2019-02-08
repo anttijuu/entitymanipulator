@@ -17,6 +17,7 @@
  The JSONMarshaller class implements the EntityManipulator interface. Thus
  it is-a-kind-of EntityManipulator. It overrides the manipulate method, a pure
  virtual in EntityManipulator.
+ What is marshalling: https://en.wikipedia.org/wiki/Marshalling_(computer_science)
  */
 class JSONMarshaller : public EntityManipulator {
 public:
