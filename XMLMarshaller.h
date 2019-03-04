@@ -24,14 +24,14 @@ class Entity;
  What is marshalling: https://en.wikipedia.org/wiki/Marshalling_(computer_science)
  */
 class XMLMarshaller : public EntityManipulator {
-	
+   
 public:
-	XMLMarshaller(std::ostream & outStream);
-	void manipulate(Entity & entity, int level) override;
-	
+   XMLMarshaller(std::ostream & outStream);
+   void manipulate(Entity & entity, int level) override;
+   
 private:
-	/** The output stream where the marshaller writes the entity objects as xml. */
-	std::ostream & out;
+   /** The output stream where the marshaller writes the entity objects as xml. */
+   std::ostream & out;
 };
 
 #endif /* defined(__EntityManipulatorExample__XMLMarshaller__) */

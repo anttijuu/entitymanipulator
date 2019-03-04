@@ -24,12 +24,12 @@ class Entity;
  */
 class EntityManipulator {
 public:
-	/** The pure virtual method defined in this interface class. Must be overridden by implementors. */
-	virtual void manipulate(Entity & entity, int level) = 0;
-	
-	/** Destructor for the manipulator. It is always a good habit of defining a virtual
-	 destructor for base and interface classes in C++. */
-	virtual ~EntityManipulator() { /* empty */ }
+   /** The pure virtual method defined in this interface class. Must be overridden by implementors. */
+   virtual void manipulate(Entity & entity, int level) = 0;
+   
+   /** Destructor for the manipulator. It is always a good habit of defining a virtual
+    destructor for base and interface classes in C++. */
+   virtual ~EntityManipulator() { /* empty */ }
 };
 
 #endif

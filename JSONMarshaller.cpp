@@ -35,7 +35,7 @@ void JSONMarshaller::manipulate(Entity & entity, int level) {
    for (int indent=0; indent < level; indent++) {
       indentStr += "  ";
    }
-
+   
    if (level == 0) {
       out << "{" << std::endl;
    } else {
@@ -58,7 +58,7 @@ void JSONMarshaller::manipulate(Entity & entity, int level) {
       level--;
       out << indentStr << "]";
    }
-
+   
    const Entity * parent = entity.getParent();
    out << std::endl;
    if (level == 0) {
@@ -71,5 +71,5 @@ void JSONMarshaller::manipulate(Entity & entity, int level) {
    } else {
       out << std::endl;
    }
-
+   
 }

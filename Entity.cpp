@@ -14,11 +14,11 @@
  @param name A name for the entity.
  */
 Entity::Entity (const std::string & n, const std::string & v)
-  : name(n), value(v), parent(nullptr) {
+: name(n), value(v), parent(nullptr) {
 }
 
 Entity::Entity(const Entity & another)
- : name(another.name), value(another.value) {
+: name(another.name), value(another.value) {
    
 }
 

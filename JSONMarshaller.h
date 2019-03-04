@@ -25,8 +25,8 @@ public:
    void manipulate(Entity & entity, int level) override;
    
 private:
-	/** The output stream where the marshaller writes the entity objects as JSON. */
-	std::ostream & out;
+   /** The output stream where the marshaller writes the entity objects as JSON. */
+   std::ostream & out;
 };
 
 #endif /* defined(__EntityManipulatorExample__JSONMarshaller__) */

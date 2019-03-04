@@ -27,13 +27,13 @@ public:
    Entity(const Entity & another);
    virtual ~Entity();
    
-	void accept(EntityManipulator & manipulator, int level = 0);
-	void attach(Entity * parent);
-	void detach();
-	Entity * getParent();
-	const std::string & getName() const;
+   void accept(EntityManipulator & manipulator, int level = 0);
+   void attach(Entity * parent);
+   void detach();
+   Entity * getParent();
+   const std::string & getName() const;
    const std::string & getValue() const;
-
+   
    void add(Entity * child);
    bool remove(Entity * child);
    
@@ -43,12 +43,12 @@ public:
    
 private:
    Entity() = delete;
-	/** The entity's name. */
-	std::string name;
-	/** Entity's value. */
+   /** The entity's name. */
+   std::string name;
+   /** Entity's value. */
    std::string value;
-	/** The parent entity of this entity. May be null when there's no parent. */
-	Entity * parent;
+   /** The parent entity of this entity. May be null when there's no parent. */
+   Entity * parent;
    
    typedef std::list<Entity*> EntityCollection;
    

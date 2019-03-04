@@ -16,13 +16,13 @@ int main(int argc, const char * argv[])
 {
    // Create a following structure of objects...
    /*
-            root
-         /       \
-      numbers   letters
-     /     \    /      \
+        root
+      /       \
+    numbers   letters
+    /     \    /      \
     1      2   A        B
-         /    / \
-       21   A.p  A.q
+    /         / \
+   21       A.p  A.q
    */
    Entity rootEntity("root", "The root object");
    Entity * thing1 = new Entity("numbers", "All the numbers...");
@@ -44,7 +44,7 @@ int main(int argc, const char * argv[])
    thing2->add(thing1);
    thing1 = new Entity("A.q", "alpha queue");
    thing2->add(thing1);
-
+   
    // ...and give the marshaller to the root entity.
    std::cout << "Marshal objects to XML..." << std::endl;
    // Create the marshaller..
