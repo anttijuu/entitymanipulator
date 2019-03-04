@@ -13,7 +13,13 @@
  Constructor for initializing Entities. Parent entity is set to null.
  @param name A name for the entity.
  */
-Entity::Entity (const std::string & n) : name(n), parent(nullptr) {
+Entity::Entity (const std::string & n, const std::string & v)
+  : name(n), value(v), parent(nullptr) {
+}
+
+Entity::Entity(const Entity & another)
+ : name(another.name), value(another.value) {
+   
 }
 
 /**
@@ -93,7 +99,15 @@ bool Entity::hasElementsAfter(const Entity * entity) const {
  @returns The entity's name.
  */
 const std::string & Entity::getName() const {
-   return this->name;
+   return name;
+}
+
+/**
+ Returns the value of the entity.
+ @return The value of the entity.
+ */
+const std::string & Entity::getValue() const {
+   return value;
 }
 
 /**

@@ -42,11 +42,17 @@ void JSONMarshaller::manipulate(Entity & entity, int level) {
       out << indentStr << "{" << std::endl;
    }
    out << indentStr << "\"name\" : \"" << entity.getName() << "\"";
+   std::string value = entity.getValue();
+   if (value.length() > 0) {
+      out << "," << std::endl << indentStr << "\"value\" : \"" << entity.getValue() << "\"";
+   } else {
+      out << std::endl;
+   }
    // out << indentStr << "}";
    if (entity.hasChildren()) {
       out << "," << std::endl;
-      out << indentStr << "\"children\" : " << std::endl;
-      out << indentStr << "[" << std::endl;
+      out << indentStr << "\"children\" : [" << std::endl;
+      // out << indentStr << "[" << std::endl;
       level++;
       entity.passToChildren(*this, level);
       level--;

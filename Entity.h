@@ -23,7 +23,8 @@ class EntityManipulator;
  */
 class Entity {
 public:
-	Entity (const std::string & n);
+   Entity(const std::string & n, const std::string & v);
+   Entity(const Entity & another);
    virtual ~Entity();
    
 	void accept(EntityManipulator & manipulator, int level = 0);
@@ -31,6 +32,7 @@ public:
 	void detach();
 	Entity * getParent();
 	const std::string & getName() const;
+   const std::string & getValue() const;
 
    void add(Entity * child);
    bool remove(Entity * child);
@@ -40,10 +42,12 @@ public:
    bool hasElementsAfter(const Entity * entity) const;
    
 private:
+   Entity() = delete;
 	/** The entity's name. */
 	std::string name;
-	
-	/** The parent entity of this entity. May be null (0, zero) when there's no parent. */
+	/** Entity's value. */
+   std::string value;
+	/** The parent entity of this entity. May be null when there's no parent. */
 	Entity * parent;
    
    typedef std::list<Entity*> EntityCollection;

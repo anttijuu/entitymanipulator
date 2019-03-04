@@ -29,17 +29,18 @@ XMLMarshaller::XMLMarshaller(std::ostream & outStream) : out(outStream) {
  */
 void XMLMarshaller::manipulate(Entity & entity, int level) {
    if (level == 0) {
-      out << "<?xml version=\"1.0\"?>\n";
+      out << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
    }
    std::string indentStr("");
    for (int indent=0; indent < level; indent++) {
       indentStr += "  ";
    }
-   out << indentStr << "<entity name=\"" << entity.getName()  << "\">" << std::endl;
+   out << indentStr << "<entity name=\"" << entity.getName()  << "\">" << entity.getValue();
    if (entity.hasChildren()) {
+      out << std::endl;
       level++;
       entity.passToChildren(*this, level);
       level--;
    }
-   out << indentStr << "</entity>" << std::endl;
+   out << (entity.hasChildren() ? indentStr : "") << "</entity>" << std::endl;
 }

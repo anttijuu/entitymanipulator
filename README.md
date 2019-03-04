@@ -38,46 +38,43 @@ You can then execute it and see the results:
 ```
 Antti-iMac:build anttijuustila$ ./EntityManipulatorExe 
 Marshal objects to XML...
-<?xml version="1.0"?>
-<entity name="root">
-  <entity name="numbers">
-    <entity name="1">
-    </entity>
-    <entity name="2">
-      <entity name="21">
+<?xml version="1.0" encoding="UTF-8"?>
+<entity name="root">The root object
+   <entity name="numbers">All the numbers...
+      <entity name="1">The only one</entity>
+      <entity name="2">Second after one
+         <entity name="21">Ventti</entity>
       </entity>
-    </entity>
-  </entity>
-  <entity name="letters">
-    <entity name="B">
-    </entity>
-    <entity name="A">
-      <entity name="A.p">
+   </entity>
+   <entity name="letters">a-b-c
+      <entity name="B">beta</entity>
+      <entity name="A">alpha
+         <entity name="A.p">alpha pi</entity>
+         <entity name="A.q">alpha queue</entity>
       </entity>
-      <entity name="A.q">
-      </entity>
-    </entity>
-  </entity>
+   </entity>
 </entity>
 
 Marshal objects to JSON...
 {
   "name" : "root",
-  "children" : 
-  [
+  "value" : "The root object",
+  "children" : [
     {
     "name" : "numbers",
-    "children" : 
-    [
+    "value" : "All the numbers...",
+    "children" : [
       {
-      "name" : "1"
+      "name" : "1",
+      "value" : "The only one"
       },
       {
       "name" : "2",
-      "children" : 
-      [
+      "value" : "Second after one",
+      "children" : [
         {
-        "name" : "21"
+        "name" : "21",
+        "value" : "Ventti"
         }
       ]
       }
@@ -85,20 +82,23 @@ Marshal objects to JSON...
     },
     {
     "name" : "letters",
-    "children" : 
-    [
+    "value" : "a-b-c",
+    "children" : [
       {
-      "name" : "B"
+      "name" : "B",
+      "value" : "beta"
       },
       {
       "name" : "A",
-      "children" : 
-      [
+      "value" : "alpha",
+      "children" : [
         {
-        "name" : "A.p"
+        "name" : "A.p",
+        "value" : "alpha pi"
         },
         {
-        "name" : "A.q"
+        "name" : "A.q",
+        "value" : "alpha queue"
         }
       ]
       }
