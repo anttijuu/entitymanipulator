@@ -57,9 +57,11 @@ int main(int argc, const char * argv[])
       JSONMarshaller jsonMarshaller(std::cout);
       rootEntity.accept(jsonMarshaller);
       
-      std::cout << "Removing letters..." << std::endl;
-      rootEntity.remove("letters");
-      rootEntity.accept(xmlMarshaller);
+      std::cout << "Cloning root entity and removing letters from clone..." << std::endl;
+      Entity * newComposite = rootEntity.clone();
+      newComposite->remove("letters");
+      newComposite->accept(xmlMarshaller);
+      delete newComposite;
       
    } catch (std::exception & e) {
       std::cout << "ERROR: " << e.what() << std::endl;

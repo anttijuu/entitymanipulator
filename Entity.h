@@ -28,6 +28,8 @@ public:
    Entity(const Entity & another);
    virtual ~Entity();
 
+   virtual Entity * clone() = 0;
+   
    void attach(Entity * parent);
    void detach();
    Entity * getParent();

@@ -26,6 +26,12 @@ EntityLeaf::EntityLeaf(const EntityLeaf & another)
  */
 EntityLeaf::~EntityLeaf() {
 }
+
+
+Entity * EntityLeaf::clone() {
+   return new EntityLeaf(*this);
+}
+
 /**
  Accepts an EntityManipulator to manipulate this entity.
  @param manipulator A manipulator to accept as a visitor.

@@ -27,6 +27,8 @@ public:
    EntityComposite(const EntityComposite & another);
    virtual ~EntityComposite();
    
+   virtual Entity * clone() override;
+   
    virtual void accept(EntityManipulator & manipulator, int level = 0) override;
    virtual void add(Entity * child) override;
    virtual bool remove(Entity * child) override;

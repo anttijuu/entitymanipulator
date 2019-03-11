@@ -2,7 +2,7 @@
 
 This project is meant to demonstrate the relationships between UML class diagrams and C++ code.
 
-See the included png file for the class diagram, and study the code to see how the class diagram and code relate to each other. Note that two design patterns have been implemented in the app -- [Composite](https://en.wikipedia.org/wiki/Composite_pattern) and [Visitor](https://en.wikipedia.org/wiki/Visitor_pattern).
+See the included png file for the class diagram, and study the code to see how the class diagram and code relate to each other. Note that three design patterns have been implemented in the app -- [Composite](https://en.wikipedia.org/wiki/Composite_pattern), [Visitor](https://en.wikipedia.org/wiki/Visitor_pattern) and [Prototype](https://en.wikipedia.org/wiki/Prototype_pattern).
 
 ![UML class diagram](UML-class-diagram-of-EntityManipulator.png)
 

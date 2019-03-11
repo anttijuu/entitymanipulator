@@ -24,6 +24,7 @@ class Entity;
 class EntityManipulator {
 public:
    /** The pure virtual method defined in this interface class. Must be overridden by implementors. */
+   //TODO: works now but would be better to have different manipulate methods for different targets to visit.
    virtual void manipulate(Entity & entity, int level) = 0;
    // virtual void manipulate(EntityComposite & entity, int level) = 0;
 

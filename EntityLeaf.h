@@ -27,6 +27,8 @@ public:
    EntityLeaf(const EntityLeaf & another);
    virtual ~EntityLeaf();
    
+   virtual Entity * clone() override;
+   
    virtual void accept(EntityManipulator & manipulator, int level = 0) override;
    void add(Entity * child) override;
    bool remove(Entity * child) override;

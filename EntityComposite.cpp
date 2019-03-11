@@ -20,7 +20,7 @@ EntityComposite::EntityComposite(const std::string & n, const std::string & v)
 
 EntityComposite::EntityComposite(const EntityComposite & another)
 : Entity(another) {
-   std::for_each(another.children.begin(), another.children.end(), [this](Entity * entity) { this->children.push_back(entity); });
+   std::for_each(another.children.begin(), another.children.end(), [this](Entity * entity) { this->children.push_back(entity->clone()); });
 }
 
 /**
@@ -32,6 +32,12 @@ EntityComposite::~EntityComposite() {
       children.pop_front();
    }
 }
+
+
+Entity * EntityComposite::clone() {
+   return new EntityComposite(*this);
+}
+
 /**
  Accepts an EntityManipulator to manipulate this entity.
  @param manipulator A manipulator to accept as a visitor.
