@@ -38,8 +38,9 @@ You can then execute it and see the results:
 
 
 ```
-Antti-iMac:build anttijuustila$ ./EntityManipulatorExe 
+My Mac:build juustila$ ./EntityManipulatorExe 
 Marshal objects to XML...
+
 <?xml version="1.0" encoding="UTF-8"?>
 <entity name="root">The root object
    <entity name="numbers">All the numbers...
@@ -58,55 +59,56 @@ Marshal objects to XML...
 </entity>
 
 Marshal objects to JSON...
+
 {
-  "name" : "root",
-  "value" : "The root object",
-  "children" : [
-    {
-    "name" : "numbers",
-    "value" : "All the numbers...",
-    "children" : [
+   "name" : "root",
+   "value" : "The root object"
+   "children" : [
       {
-      "name" : "1",
-      "value" : "The only one"
+         "name" : "numbers",
+         "value" : "All the numbers..."
+         "children" : [
+            {
+               "name" : "1",
+               "value" : "The only one"
+            },
+            {
+               "name" : "2",
+               "value" : "Second after one"
+               "children" : [
+                  {
+                     "name" : "21",
+                     "value" : "Ventti"
+                  }
+               ]
+            }
+         ]
       },
       {
-      "name" : "2",
-      "value" : "Second after one",
-      "children" : [
-        {
-        "name" : "21",
-        "value" : "Ventti"
-        }
-      ]
+         "name" : "letters",
+         "value" : "a-b-c"
+         "children" : [
+            {
+               "name" : "B",
+               "value" : "beta"
+            },
+            {
+               "name" : "A",
+               "value" : "alpha"
+               "children" : [
+                  {
+                     "name" : "A.p",
+                     "value" : "alpha pi"
+                  },
+                  {
+                     "name" : "A.q",
+                     "value" : "alpha queue"
+                  }
+               ]
+            }
+         ]
       }
-    ]
-    },
-    {
-    "name" : "letters",
-    "value" : "a-b-c",
-    "children" : [
-      {
-      "name" : "B",
-      "value" : "beta"
-      },
-      {
-      "name" : "A",
-      "value" : "alpha",
-      "children" : [
-        {
-        "name" : "A.p",
-        "value" : "alpha pi"
-        },
-        {
-        "name" : "A.q",
-        "value" : "alpha queue"
-        }
-      ]
-      }
-    ]
-    }
-  ]
+   ]
 }
 ```
 
