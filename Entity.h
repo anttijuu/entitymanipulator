@@ -18,7 +18,9 @@ class EntityManipulator;
 /**
  The Entity class just describes some entity with a name. The entity can
  also have a parent entity. It may be null (0; there's no parent for the entity).
- Entity can also have children.
+ Entity can also have children, but since this implements the Composite design pattern,
+ Entity being the base class, Entity does not hold the children. The EntityComposite does.
+ @see https://en.wikipedia.org/wiki/Composite_pattern
  */
 class Entity {
 public:

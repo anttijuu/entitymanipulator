@@ -11,12 +11,16 @@
 
 /**
  Constructor for initializing Entities. Parent Entity is set to null.
- @param name A name for the Entity.
+ @param n A name for the Entity.
+ @param v The value for the entity.
  */
 Entity::Entity (const std::string & n, const std::string & v)
 : name(n), value(v), parent(nullptr) {
 }
 
+/** A copy constructor to copy Entities.
+ @param another The entity to copy.
+ */
 Entity::Entity(const Entity & another)
 : name(another.name), value(another.value) {
    

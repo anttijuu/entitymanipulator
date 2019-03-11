@@ -10,8 +10,9 @@
 #include "EntityManipulator.h"
 
 /**
- Constructor for initializing Entities. Parent entity is set to null.
- @param name A name for the entity.
+ Constructor for initializing composite Entities. Parent entity is set to null.
+ @param n A name for the Entity.
+ @param v The value for the entity.
  */
 EntityComposite::EntityComposite(const std::string & n, const std::string & v)
 : Entity(n, v) {
@@ -19,7 +20,7 @@ EntityComposite::EntityComposite(const std::string & n, const std::string & v)
 
 EntityComposite::EntityComposite(const EntityComposite & another)
 : Entity(another) {
-   
+   std::for_each(another.children.begin(), another.children.end(), [this](Entity * entity) { this->children.push_back(entity); });
 }
 
 /**
@@ -42,7 +43,7 @@ void EntityComposite::accept(EntityManipulator & manipulator, int level) {
 
 /**
  Check if entity has children.
- @returns True if entity has children.
+ @return True if entity has children.
  */
 bool EntityComposite::hasChildren() const {
    return !children.empty();
@@ -82,9 +83,12 @@ void EntityComposite::add(Entity * child) {
 }
 
 /**
- Removes a child entity from this Entity.
- @param child A child to remove from this entity. If the child is not an immediate child
+ Removes and deletes a child entity from this Entity.
+ If the child is not an immediate child
  of this entity, then it is given to the children to be removed from there, if it is found.
+ If the child is a Composite, removes and deletes the children too.
+ @param child A child to remove from this entity.
+ @return Returns true if the entity was removed, otherwise false.
  */
 bool EntityComposite::remove(Entity * child) {
    // Check if this entity holds the child as an immediate child object.
@@ -111,6 +115,10 @@ bool EntityComposite::remove(Entity * child) {
    return returnValue;
 }
 
+/**
+ A helper struct to assist in finding an Entity with a given name. Used
+ in EntityComposite::remove(const std::string &) to find an Entity with a given name.
+ */
 struct ElementNameMatches {
    ElementNameMatches(const std::string & name) {
       withName = name;
@@ -124,6 +132,14 @@ struct ElementNameMatches {
    }
 };
 
+/**
+ Removes and deletes a child entity from this Entity.
+ If the child is not an immediate child of this entity, then it is given
+ to the children to be removed from there, if it is found.
+ If the child is a Composite, removes and deletes the children too.
+ @param withName A child with this name to remove from this entity.
+ @return Returns true if the entity was removed, otherwise false.
+ */
 bool EntityComposite::remove(const std::string & withName) {
    bool returnValue = false;
    auto iter = std::find_if(children.begin(), children.end(), ElementNameMatches(withName));

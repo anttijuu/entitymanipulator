@@ -18,9 +18,8 @@
 class EntityManipulator;
 
 /**
- The EntityComposite class just describes some EntityComposite with a name. The EntityComposite can
- also have a parent EntityComposite. It may be null (0; there's no parent for the EntityComposite).
- EntityComposite can also have children.
+ The EntityComposite class describes an Entity which is also a Composite.
+ EntityComposite can have children.
  */
 class EntityComposite : public Entity {
 public:
@@ -41,7 +40,7 @@ private:
    EntityComposite() = delete;
    
    typedef std::list<Entity*> EntityCollection;
-   
+   /** The child Entities of the Composite Entity. */
    EntityCollection children;
    
 };

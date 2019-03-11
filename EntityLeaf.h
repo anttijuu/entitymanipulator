@@ -18,9 +18,8 @@
 class EntityManipulator;
 
 /**
- The Entity class just describes some entity with a name. The entity can
- also have a parent entity. It may be null (0; there's no parent for the entity).
- Entity can also have children.
+ The Entity Leaf class describes a concrete entity with a name but without child Entities.
+ If you try to use the child Entity access methods, an exception is thrown.
  */
 class EntityLeaf : public Entity {
 public:
