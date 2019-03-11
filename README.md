@@ -4,6 +4,8 @@ This project is meant to demonstrate the relationships between class diagrams an
 
 See the included png file for the class diagram, and study the code to see how the class diagram and code relate to each other.
 
+![](UML-class-diagram-of-EntityManipulator.png)
+
 In the main.cpp an object structure is created. Then code demonstrates two ways (JSON & XML) to externalize the object structure into a stream. The object structure looks like this:
 
 ```
