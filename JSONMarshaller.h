@@ -6,8 +6,7 @@
 //  Copyright (c) 2013 Antti Juustila. All rights reserved.
 //
 
-#ifndef __EntityManipulatorExample__JSONMarshaller__
-#define __EntityManipulatorExample__JSONMarshaller__
+#pragma once
 
 #include <iostream>
 
@@ -29,4 +28,3 @@ private:
    std::ostream & out;
 };
 
-#endif /* defined(__EntityManipulatorExample__JSONMarshaller__) */

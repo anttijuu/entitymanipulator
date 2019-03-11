@@ -10,6 +10,10 @@ include(CMakePackageConfigHelpers)
 set(EntityManipulator_SRCS
     Entity.h
     Entity.cpp
+    EntityComposite.h
+    EntityComposite.cpp
+    EntityLeaf.h
+    EntityLeaf.cpp
     EntityManipulator.h
     JSONMarshaller.h
     JSONMarshaller.cpp

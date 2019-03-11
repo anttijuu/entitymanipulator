@@ -2,12 +2,11 @@
 //  Entity.h
 //  EntityManipulatorExample
 //
-//  Created by Antti Juustila on 30.5.2013.
-//  Copyright (c) 2013 Antti Juustila. All rights reserved.
+//  Created by Antti Juustila on 11.3.2019.
+//  Copyright (c) 2019 Antti Juustila. All rights reserved.
 //
 
-#ifndef __EntityManipulatorExample__Entity__
-#define __EntityManipulatorExample__Entity__
+#pragma once
 
 #include <string>
 #include <list>
@@ -26,20 +25,24 @@ public:
    Entity(const std::string & n, const std::string & v);
    Entity(const Entity & another);
    virtual ~Entity();
-   
-   void accept(EntityManipulator & manipulator, int level = 0);
+
    void attach(Entity * parent);
    void detach();
    Entity * getParent();
    const std::string & getName() const;
    const std::string & getValue() const;
+
+   //MARK: - Overriddable
+   virtual void accept(EntityManipulator & manipulator, int level = 0) = 0;
    
-   void add(Entity * child);
-   bool remove(Entity * child);
+   //MARK: - Child operations
+   virtual void add(Entity * child) = 0;
+   virtual bool remove(Entity * child) = 0;
+   virtual bool remove(const std::string & withName) = 0;
    
-   bool hasChildren() const;
-   void passToChildren(EntityManipulator & manipulator, int level);
-   bool hasElementsAfter(const Entity * entity) const;
+   virtual bool hasChildren() const = 0;
+   virtual void passToChildren(EntityManipulator & manipulator, int level) = 0;
+   virtual bool hasElementsAfter(const Entity * entity) const = 0;
    
 private:
    Entity() = delete;
@@ -50,10 +53,6 @@ private:
    /** The parent entity of this entity. May be null when there's no parent. */
    Entity * parent;
    
-   typedef std::list<Entity*> EntityCollection;
-   
-   EntityCollection children;
-   
 };
 
-#endif /* defined(__EntityManipulatorExample__Entity__) */
+// EOF

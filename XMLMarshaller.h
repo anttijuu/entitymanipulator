@@ -6,8 +6,7 @@
 //  Copyright (c) 2013 Antti Juustila. All rights reserved.
 //
 
-#ifndef __EntityManipulatorExample__XMLMarshaller__
-#define __EntityManipulatorExample__XMLMarshaller__
+#pragma once
 
 #include <ostream>
 
@@ -34,4 +33,4 @@ private:
    std::ostream & out;
 };
 
-#endif /* defined(__EntityManipulatorExample__XMLMarshaller__) */
+// EOF

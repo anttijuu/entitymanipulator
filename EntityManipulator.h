@@ -6,8 +6,7 @@
 //  Copyright (c) 2013 Antti Juustila. All rights reserved.
 //
 
-#ifndef EntityManipulatorExample_EntityManipulator_h
-#define EntityManipulatorExample_EntityManipulator_h
+#pragma once
 
 // Forward declaration of a class that does not need to be
 // #include'd here.
@@ -26,10 +25,11 @@ class EntityManipulator {
 public:
    /** The pure virtual method defined in this interface class. Must be overridden by implementors. */
    virtual void manipulate(Entity & entity, int level) = 0;
-   
+   // virtual void manipulate(EntityComposite & entity, int level) = 0;
+
    /** Destructor for the manipulator. It is always a good habit of defining a virtual
     destructor for base and interface classes in C++. */
    virtual ~EntityManipulator() { /* empty */ }
 };
 
-#endif
+// EOF
