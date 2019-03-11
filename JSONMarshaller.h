@@ -12,6 +12,8 @@
 
 #include "EntityManipulator.h"
 
+class Entity;
+
 /**
  The JSONMarshaller class implements the EntityManipulator interface. Thus
  it is-a-kind-of EntityManipulator. It overrides the manipulate method, a pure
@@ -24,6 +26,11 @@ public:
    virtual void manipulate(EntityComposite & entity, int level);
    virtual void manipulate(EntityLeaf & entity, int level);
 
+private:
+   // Helper functions to avoid duplicate code.
+   void doFirstPart(Entity & entity, int level, int baseWidth);
+   void doLastPart(Entity & entity, int level, int baseWidth);
+   
 private:
    /** The output stream where the marshaller writes the entity objects as JSON. */
    std::ostream & out;

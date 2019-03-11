@@ -34,39 +34,17 @@ JSONMarshaller::JSONMarshaller(std::ostream & os) : out(os) {
  */
 void JSONMarshaller::manipulate(EntityComposite & entity, int level) {
    int baseWidth = level * 3;
-   out << std::setw(baseWidth+1) << "{" << std::endl;
+   doFirstPart(entity, level, baseWidth);
 
-   // To get prettier printout, increase level and calculate indent again after printing "{"
-   baseWidth = ++level * 3;
-
-   out << std::setw(baseWidth+10) << "\"name\" : \"" << entity.getName() << "\"";
-   std::string value = entity.getValue();
-   if (value.length() > 0) {
-      out << "," << std::endl << std::setw(baseWidth+11) << "\"value\" : \"" << entity.getValue() << "\"";
-   } else {
-      out << std::endl;
-   }
    if (entity.hasChildren()) {
-      out << "," << std::endl;
+      baseWidth = ++level * 3;
       out << std::setw(baseWidth+14) << "\"children\" : [" << std::endl;
-      level++;
-      entity.passToChildren(*this, level);
-      level--;
+      entity.passToChildren(*this, ++level);
+      baseWidth = --level * 3;
       out << std::setw(baseWidth+1) << "]" << std::endl;
    }
-   // To get prettier printout, decrease level and calculate indent again before printing "}"
    baseWidth = --level * 3;
-   const Entity * parent = entity.getParent();
-   if (parent != nullptr) {
-      if (parent->hasElementsAfter(&entity)) {
-         out << std::setw(baseWidth+2) <<  "}," << std::endl;
-      } else {
-         out << std::setw(baseWidth+1) << "}" << std::endl;
-      }
-   } else {
-      out << "}" << std::endl;
-   }
-   
+   doLastPart(entity, level, baseWidth);
 }
 
 /**
@@ -80,15 +58,22 @@ void JSONMarshaller::manipulate(EntityComposite & entity, int level) {
  */
 void JSONMarshaller::manipulate(EntityLeaf & entity, int level) {
    int baseWidth = level * 3;
-   out << std::setw(baseWidth+1) << "{" << std::endl;
+   doFirstPart(entity, level, baseWidth);
+   doLastPart(entity, level, baseWidth);
+}
 
+void JSONMarshaller::doFirstPart(Entity & entity, int level, int baseWidth) {
+   out << std::setw(baseWidth+1) << "{" << std::endl;
+   
    baseWidth = ++level * 3;
    out << std::setw(baseWidth+10) << "\"name\" : \"" << entity.getName() << "\"";
    std::string value = entity.getValue();
    if (value.length() > 0) {
       out << "," << std::endl << std::setw(baseWidth+11) << "\"value\" : \"" << entity.getValue() << "\"" << std::endl;
    }
-   baseWidth = --level * 3;
+}
+
+void JSONMarshaller::doLastPart(Entity & entity, int level, int baseWidth) {
    const Entity * parent = entity.getParent();
    if (parent != nullptr) {
       if (parent->hasElementsAfter(&entity)) {
@@ -97,7 +82,6 @@ void JSONMarshaller::manipulate(EntityLeaf & entity, int level) {
          out << std::setw(baseWidth+1) <<  "}" << std::endl;
       }
    } else {
-      out << "asdfasdfasf}" << std::endl;
+      out << "}" << std::endl;
    }
-   
 }
