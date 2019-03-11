@@ -1,12 +1,12 @@
 # EntityManipulator demonstration project
 
-This project is meant to demonstrate the relationships between class diagrams and C++ code.
+This project is meant to demonstrate the relationships between UML class diagrams and C++ code.
 
-See the included png file for the class diagram, and study the code to see how the class diagram and code relate to each other.
+See the included png file for the class diagram, and study the code to see how the class diagram and code relate to each other. Note that two design patterns have been implemented in the app -- [Composite](https://en.wikipedia.org/wiki/Composite_pattern) and [Visitor](https://en.wikipedia.org/wiki/Visitor_pattern).
 
-![](UML-class-diagram-of-EntityManipulator.png)
+![UML class diagram](UML-class-diagram-of-EntityManipulator.png)
 
-In the main.cpp an object structure is created. Then code demonstrates two ways (JSON & XML) to externalize the object structure into a stream. The object structure looks like this:
+In the `main.cpp` an object structure is created. Then code demonstrates two ways (JSON & XML) to externalize the object structure into a stream using *marshallers*. The object structure looks like this:
 
 ```
             root
