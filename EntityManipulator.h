@@ -10,7 +10,8 @@
 
 // Forward declaration of a class that does not need to be
 // #include'd here.
-class Entity;
+class EntityComposite;
+class EntityLeaf;
 
 /**
  The interface class EntityManipulator defines what EntityManipulators do.
@@ -23,13 +24,11 @@ class Entity;
  */
 class EntityManipulator {
 public:
-   /** The pure virtual method defined in this interface class. Must be overridden by implementors. */
-   //TODO: works now but would be better to have different manipulate methods for different targets to visit.
-   virtual void manipulate(Entity & entity, int level) = 0;
-   // virtual void manipulate(EntityComposite & entity, int level) = 0;
-
-   /** Destructor for the manipulator. It is always a good habit of defining a virtual
-    destructor for base and interface classes in C++. */
+   /** The pure virtual methods for visiting Entities defined in this interface class. Must be overridden by implementors. */
+   virtual void manipulate(EntityComposite & entity, int level) = 0;
+   virtual void manipulate(EntityLeaf & entity, int level) = 0;
+   /** Destructor for the manipulator. It is always a good habit of defining
+    destructor as virtual for base and interface classes in C++. */
    virtual ~EntityManipulator() { /* empty */ }
 };
 

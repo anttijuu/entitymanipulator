@@ -12,10 +12,6 @@
 
 #include "EntityManipulator.h"
 
-// Forward declaration of a class that does not need to be
-// #include'd here.
-class Entity;
-
 /**
  The XMLMarshaller class implements the EntityManipulator interface. Thus
  it is-a-kind-of EntityManipulator. It overrides the manipulate method, a pure
@@ -26,8 +22,9 @@ class XMLMarshaller : public EntityManipulator {
    
 public:
    XMLMarshaller(std::ostream & outStream);
-   void manipulate(Entity & entity, int level) override;
-   
+   virtual void manipulate(EntityComposite & entity, int level);
+   virtual void manipulate(EntityLeaf & entity, int level);
+
 private:
    /** The output stream where the marshaller writes the entity objects as xml. */
    std::ostream & out;

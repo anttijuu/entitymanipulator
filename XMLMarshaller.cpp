@@ -5,9 +5,11 @@
 //  Created by Antti Juustila on 30.5.2013.
 //  Copyright (c) 2013 Antti Juustila. All rights reserved.
 //
+#include <iomanip>
 
 #include "XMLMarshaller.h"
-#include "Entity.h"
+#include "EntityComposite.h"
+#include "EntityLeaf.h"
 
 /**
  The constructor for the XMLMarshaller. It stores the reference to output stream
@@ -23,24 +25,41 @@ XMLMarshaller::XMLMarshaller(std::ostream & outStream) : out(outStream) {
  The manipulate method is inherited from EntityManipulator and since it is pure virtual
  (abstract) method there, it has to be overridden here. Otherwise, this class would also
  be abstract and  you couldn't instantiate it.<p>
- Here, the XMLMarshaller just writes the propertes of the Entity into the output stream
+ Here, the XMLMarshaller just writes the propertes of the EntityComposite into the output stream
  in XML format. Then the marshaller is sent to visit the children of this Entity.
  @param entity The entity to manipulate.
+ @param level In which level of object hierarchy we are.
  */
-void XMLMarshaller::manipulate(Entity & entity, int level) {
+void XMLMarshaller::manipulate(EntityComposite & entity, int level) {
    if (level == 0) {
-      out << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+      out << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" << std::endl;
    }
-   std::string indentStr("");
-   for (int indent=0; indent < level; indent++) {
-      indentStr += "  ";
-   }
-   out << indentStr << "<entity name=\"" << entity.getName()  << "\">" << entity.getValue();
+   // 14 is the length of <entity name=".
+   out << std::setw((level*3)+14) << "<entity name=\"" << entity.getName()  << "\">" << entity.getValue();
    if (entity.hasChildren()) {
       out << std::endl;
       level++;
       entity.passToChildren(*this, level);
       level--;
    }
-   out << (entity.hasChildren() ? indentStr : "") << "</entity>" << std::endl;
+   // 9 is the length of </entity>
+   out << (entity.hasChildren() ? std::setw((level*3)+9) : std::setw(0)) << "</entity>" << std::endl;
+}
+
+/**
+ The manipulate method is inherited from EntityManipulator and since it is pure virtual
+ (abstract) method there, it has to be overridden here. Otherwise, this class would also
+ be abstract and  you couldn't instantiate it.<p>
+ Here, the XMLMarshaller just writes the propertes of the EntityLeaf into the output stream
+ in XML format.
+ @param entity The entity to manipulate.
+ @param level In which level of object hierarchy we are.
+ */
+void XMLMarshaller::manipulate(EntityLeaf & entity, int level) {
+   if (level == 0) {
+      out << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" << std::endl;
+   }
+   out << std::setw((level*3)+14) << "<entity name=\""
+      << entity.getName()  << "\">" << entity.getValue()
+      << "</entity>" << std::endl;
 }

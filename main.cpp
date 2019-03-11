@@ -48,19 +48,22 @@ int main(int argc, const char * argv[])
       thing2->add(thing1);
       
       // ...and give the marshaller to the root entity.
-      std::cout << "Marshal objects to XML..." << std::endl;
+      std::cout << "Marshal objects to XML..." << std::endl << std::endl;
       // Create the marshaller..
       XMLMarshaller xmlMarshaller(std::cout);
       rootEntity.accept(xmlMarshaller);
       
-      std::cout << std::endl << "Marshal objects to JSON..." << std::endl;
+      std::cout << std::endl << "Marshal objects to JSON..." << std::endl << std::endl;
       JSONMarshaller jsonMarshaller(std::cout);
       rootEntity.accept(jsonMarshaller);
       
-      std::cout << "Cloning root entity and removing letters from clone..." << std::endl;
+      std::cout << "Cloning root entity and removing letters from clone..." << std::endl << std::endl;
       Entity * newComposite = rootEntity.clone();
       newComposite->remove("letters");
+      std::cout << "Marshal objects to XML..." << std::endl << std::endl;
       newComposite->accept(xmlMarshaller);
+      std::cout << std::endl << "Marshal objects to JSON..." << std::endl << std::endl;
+      newComposite->accept(jsonMarshaller);
       delete newComposite;
       
    } catch (std::exception & e) {

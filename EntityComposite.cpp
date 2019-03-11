@@ -20,7 +20,7 @@ EntityComposite::EntityComposite(const std::string & n, const std::string & v)
 
 EntityComposite::EntityComposite(const EntityComposite & another)
 : Entity(another) {
-   std::for_each(another.children.begin(), another.children.end(), [this](Entity * entity) { this->children.push_back(entity->clone()); });
+   std::for_each(another.children.begin(), another.children.end(), [this](Entity * entity) { add(entity->clone()); });
 }
 
 /**
