@@ -22,7 +22,7 @@ Entity::Entity (const std::string & n, const std::string & v)
  @param another The entity to copy.
  */
 Entity::Entity(const Entity & another)
-: name(another.name), value(another.value) {
+: name(another.name), value(another.value), parent(nullptr) {
    
 }
 
