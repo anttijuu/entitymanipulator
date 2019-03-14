@@ -74,15 +74,20 @@ void EntityLeaf::add(Entity * child) {
 }
 
 /**
- Removes a child entity from this Entity.
- @param child A child to remove from this entity. If the child is not an immediate child
- of this entity, then it is given to the children to be removed from there, if it is found.
+ Removes a child entity from this Entity, but leaf entity has no children so exception is thrown.
+ @param child A child to remove from this entity. Since the operation is not possible, an exception
+ is thrown to indicate a logic error in attempting to remove children from leaf Entity.
  */
 bool EntityLeaf::remove(Entity * child) {
    throw std::logic_error("Cannot remove children from Leaf Entity");
    return false;
 }
 
+/**
+ Removes a child entity from this Entity using it's name, but leaf entity has no children so exception is thrown.
+ @param child A child to remove from this entity. Since the operation is not possible, an exception
+ is thrown to indicate a logic error in attempting to remove children from leaf Entity.
+ */
 bool EntityLeaf::remove(const std::string & withName) {
    throw std::logic_error("Cannot remove children from Leaf Entity");
    return false;

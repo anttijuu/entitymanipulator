@@ -38,11 +38,9 @@ public:
    Entity * getParent();
    const std::string & getName() const;
    const std::string & getValue() const;
-
-   //MARK: - Overriddable
+   
    virtual void accept(EntityManipulator & manipulator, int level = 0) = 0;
    
-   //MARK: - Child operations
    virtual void add(Entity * child) = 0;
    virtual bool remove(Entity * child) = 0;
    virtual bool remove(const std::string & withName) = 0;

@@ -33,7 +33,10 @@ EntityComposite::~EntityComposite() {
    }
 }
 
-
+/**
+ Clones the Entity, creating a deep copy of the composite Entity object.
+ @return Returns a copy of the cloned object.
+ */
 Entity * EntityComposite::clone() {
    return new EntityComposite(*this);
 }
@@ -41,6 +44,8 @@ Entity * EntityComposite::clone() {
 /**
  Accepts an EntityManipulator to manipulate this entity.
  @param manipulator A manipulator to accept as a visitor.
+ @param level The level where the manipulator is currently travelling in the object hierarchy.
+ Initially zero.
  */
 void EntityComposite::accept(EntityManipulator & manipulator, int level) {
    manipulator.manipulate(*this, level);

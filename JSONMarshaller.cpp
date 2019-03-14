@@ -62,6 +62,11 @@ void JSONMarshaller::manipulate(EntityLeaf & entity, int level) {
    doLastPart(entity, level, baseWidth);
 }
 
+/** A helper method to externalize the beginning part of the object as JSON.
+ @param entity The entity to export/marshal.
+ @param level Level in object hierarchy were the marshaller currently navigates.
+ @param baseWidth The amount of indentation currently calculate for this level.
+ */
 void JSONMarshaller::doFirstPart(Entity & entity, int level, int baseWidth) {
    out << std::setw(baseWidth+1) << "{" << std::endl;
    
@@ -73,6 +78,11 @@ void JSONMarshaller::doFirstPart(Entity & entity, int level, int baseWidth) {
    }
 }
 
+/** A helper method to externalize the end part of the object as JSON.
+ @param entity The entity to export/marshal.
+ @param level Level in object hierarchy were the marshaller currently navigates.
+ @param baseWidth The amount of indentation currently calculate for this level.
+ */
 void JSONMarshaller::doLastPart(Entity & entity, int level, int baseWidth) {
    const Entity * parent = entity.getParent();
    if (parent != nullptr) {
