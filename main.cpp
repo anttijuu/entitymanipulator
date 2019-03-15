@@ -13,7 +13,8 @@
 #include "XMLMarshaller.h"
 #include "JSONMarshaller.h"
 
-Entity * createEntities();
+// Forward declaration of a function.
+std::unique_ptr<Entity> createEntities();
 
 int main(int argc, const char * argv[])
 {
@@ -58,7 +59,7 @@ Where street, billing and work addresses have details (street name, post number 
    return 0;
 }
 
-Entity * createEntities() {
+std::unique_ptr<Entity> createEntities() {
    std::unique_ptr<EntityComposite> customers(new EntityComposite("customers", ""));
    // First customer.
    EntityComposite * customer = new EntityComposite("customer", "FooBar Ltd");
@@ -93,5 +94,5 @@ Entity * createEntities() {
    address->add(new EntityLeaf("entrance", "R"));
    address->add(new EntityLeaf("postnumber", "FI-90014"));
    address->add(new EntityLeaf("city", "Oulun yliopisto"));
-   return customers.release();
+   return customers;
 }
