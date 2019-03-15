@@ -41,11 +41,11 @@ void EntityLeaf::accept(EntityManipulator & manipulator, int level) {
 }
 
 /**
- Check if entity has children.
- @returns True if entity has children.
+ Check the Entity's child count.
+ @returns Zero (0), since Leaf entity does not have children.
  */
-bool EntityLeaf::hasChildren() const {
-   return false;
+int EntityLeaf::childCount() const {
+   return 0;
 }
 
 /**
@@ -88,7 +88,7 @@ bool EntityLeaf::remove(Entity * child) {
  @param child A child to remove from this entity. Since the operation is not possible, an exception
  is thrown to indicate a logic error in attempting to remove children from leaf Entity.
  */
-bool EntityLeaf::remove(const std::string & withName) {
+bool EntityLeaf::remove(const std::pair<std::string,std::string> & nameValue) {
    throw std::logic_error("Cannot remove children from Leaf Entity");
    return false;
 }

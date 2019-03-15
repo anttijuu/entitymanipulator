@@ -34,17 +34,32 @@ JSONMarshaller::JSONMarshaller(std::ostream & os) : out(os) {
  */
 void JSONMarshaller::manipulate(EntityComposite & entity, int level) {
    int baseWidth = level * 3;
-   doFirstPart(entity, level, baseWidth);
 
-   if (entity.hasChildren()) {
+   out << std::setw(baseWidth+1) << "{" << std::endl;
+
+   std::string name = "\"" + entity.getName() + "\" : [";
+   int entityNameLength = name.length();
+   out << std::setw(baseWidth+entityNameLength) << name << std::endl;
+
+   if (entity.childCount() > 0) {
+      std::string value = entity.getValue();
       baseWidth = ++level * 3;
-      out << std::setw(baseWidth+14) << "\"children\" : [" << std::endl;
-      entity.passToChildren(*this, ++level);
+      if (value.length() > 0) {
+         name = "{ \"" + entity.getName() + "-name\" : \"" + value + "\"";
+         out << std::setw(baseWidth+name.length()) << name << "}," << std::endl;
+      }
+      entity.passToChildren(*this, level);
       baseWidth = --level * 3;
-      out << std::setw(baseWidth+1) << "]" << std::endl;
+   } else {
+      
    }
-   baseWidth = --level * 3;
-   doLastPart(entity, level, baseWidth);
+   out << std::setw(baseWidth+1) << "]" << std::endl;
+   const Entity * parent = entity.getParent();
+   if (parent != nullptr && parent->hasElementsAfter(&entity)) {
+      out << std::setw(baseWidth+2) << "}," << std::endl;
+   } else {
+      out << std::setw(baseWidth+1) << "}" << std::endl;
+   }
 }
 
 /**
@@ -58,38 +73,21 @@ void JSONMarshaller::manipulate(EntityComposite & entity, int level) {
  */
 void JSONMarshaller::manipulate(EntityLeaf & entity, int level) {
    int baseWidth = level * 3;
-   doFirstPart(entity, level, baseWidth);
-   doLastPart(entity, level, baseWidth);
-}
-
-/** A helper method to externalize the beginning part of the object as JSON.
- @param entity The entity to export/marshal.
- @param level Level in object hierarchy were the marshaller currently navigates.
- @param baseWidth The amount of indentation currently calculate for this level.
- */
-void JSONMarshaller::doFirstPart(Entity & entity, int level, int baseWidth) {
-   out << std::setw(baseWidth+1) << "{" << std::endl;
-   
-   baseWidth = ++level * 3;
-   out << std::setw(baseWidth+10) << "\"name\" : \"" << entity.getName() << "\"";
+   std::string name = "{ \"" + entity.getName() + "\" : ";
+   int entityNameLength = name.length();
+   out << std::setw(baseWidth+entityNameLength) << name;
    std::string value = entity.getValue();
    if (value.length() > 0) {
-      out << "," << std::endl << std::setw(baseWidth+11) << "\"value\" : \"" << entity.getValue() << "\"" << std::endl;
+      out << "\"" << entity.getValue() << "\" }";
+   } else {
+      out << "}" << std::endl;
    }
-}
-
-/** A helper method to externalize the end part of the object as JSON.
- @param entity The entity to export/marshal.
- @param level Level in object hierarchy were the marshaller currently navigates.
- @param baseWidth The amount of indentation currently calculate for this level.
- */
-void JSONMarshaller::doLastPart(Entity & entity, int level, int baseWidth) {
    const Entity * parent = entity.getParent();
    if (parent != nullptr) {
       if (parent->hasElementsAfter(&entity)) {
-         out << std::setw(baseWidth+2) <<  "}," << std::endl;
+         out <<  "," << std::endl;
       } else {
-         out << std::setw(baseWidth+1) <<  "}" << std::endl;
+         out << std::endl;
       }
    } else {
       out << "}" << std::endl;

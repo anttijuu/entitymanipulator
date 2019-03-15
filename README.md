@@ -9,13 +9,15 @@ See the included png file for the class diagram, and study the code to see how t
 In the `main.cpp` an object structure is created. Then code demonstrates two ways (JSON & XML) to externalize the object structure into a stream using *marshallers*. The object structure looks like this:
 
 ```
-            root
-         /       \
-      numbers   letters
-     /     \    /      \
-    1      2   A        B
-         /    / \
-       21   A.p  A.q
+             customers
+          /              \
+    customer             customer   ______
+    FooBar Ltd__         Antti Juustila   \_
+   /   |  \     \            /  |   \        \
+id  type street billing    id   type  street  work
+          addr   addr                  addr     addr
+    
+Where street, billing and work addresses have details (street name, post number etc).
 ```
 
 
@@ -38,77 +40,98 @@ You can then execute it and see the results:
 
 
 ```
-My Mac:build juustila$ ./EntityManipulatorExe 
+OY1902105:build juustila$ ./EntityManipulatorExe 
 Marshal objects to XML...
 
 <?xml version="1.0" encoding="UTF-8"?>
-<entity name="root">The root object
-   <entity name="numbers">All the numbers...
-      <entity name="1">The only one</entity>
-      <entity name="2">Second after one
-         <entity name="21">Ventti</entity>
-      </entity>
-   </entity>
-   <entity name="letters">a-b-c
-      <entity name="B">beta</entity>
-      <entity name="A">alpha
-         <entity name="A.p">alpha pi</entity>
-         <entity name="A.q">alpha queue</entity>
-      </entity>
-   </entity>
-</entity>
+<customers>
+   <customer customer-identifier="FooBar Ltd">
+      <id>9897765</id>
+      <type>Company</type>
+      <address address-identifier="Billing">
+         <street>Technovillage Post Office</street>
+         <postnumber>FI-90570</postnumber>
+         <city>Oulu</city>
+      </address>
+      <address address-identifier="Street">
+         <street>Technology Village Road 11</street>
+         <entrance>B 21</entrance>
+         <postnumber>FI-90570</postnumber>
+         <city>Oulu</city>
+      </address>
+   </customer>
+   <customer customer-identifier="Antti Juustila">
+      <id>123456</id>
+      <type>Person</type>
+      <address address-identifier="Home">
+         <street>Grand Vista Boulevard 125</street>
+         <entrance>A1</entrance>
+         <postnumber>JE3-10560</postnumber>
+         <city>St Brelades</city>
+      </address>
+      <address address-identifier="Work">
+         <street>Linnanmaa</street>
+         <entrance>R</entrance>
+         <postnumber>FI-90014</postnumber>
+         <city>Oulun yliopisto</city>
+      </address>
+   </customer>
+</customers>
 
 Marshal objects to JSON...
 
 {
-   "name" : "root",
-   "value" : "The root object"
-   "children" : [
+"customers" : [
+   {
+   "customer" : [
+      { "customer-name" : "FooBar Ltd"},
+      { "id" : "9897765" },
+      { "type" : "Company" },
       {
-         "name" : "numbers",
-         "value" : "All the numbers..."
-         "children" : [
-            {
-               "name" : "1",
-               "value" : "The only one"
-            },
-            {
-               "name" : "2",
-               "value" : "Second after one"
-               "children" : [
-                  {
-                     "name" : "21",
-                     "value" : "Ventti"
-                  }
-               ]
-            }
-         ]
+      "address" : [
+         { "address-name" : "Billing"},
+         { "street" : "Technovillage Post Office" },
+         { "postnumber" : "FI-90570" },
+         { "city" : "Oulu" }
+      ]
       },
       {
-         "name" : "letters",
-         "value" : "a-b-c"
-         "children" : [
-            {
-               "name" : "B",
-               "value" : "beta"
-            },
-            {
-               "name" : "A",
-               "value" : "alpha"
-               "children" : [
-                  {
-                     "name" : "A.p",
-                     "value" : "alpha pi"
-                  },
-                  {
-                     "name" : "A.q",
-                     "value" : "alpha queue"
-                  }
-               ]
-            }
-         ]
+      "address" : [
+         { "address-name" : "Street"},
+         { "street" : "Technology Village Road 11" },
+         { "entrance" : "B 21" },
+         { "postnumber" : "FI-90570" },
+         { "city" : "Oulu" }
+      ]
       }
    ]
+   },
+   {
+   "customer" : [
+      { "customer-name" : "Antti Juustila"},
+      { "id" : "123456" },
+      { "type" : "Person" },
+      {
+      "address" : [
+         { "address-name" : "Home"},
+         { "street" : "Grand Vista Boulevard 125" },
+         { "entrance" : "A1" },
+         { "postnumber" : "JE3-10560" },
+         { "city" : "St Brelades" }
+      ]
+      },
+      {
+      "address" : [
+         { "address-name" : "Work"},
+         { "street" : "Linnanmaa" },
+         { "entrance" : "R" },
+         { "postnumber" : "FI-90014" },
+         { "city" : "Oulun yliopisto" }
+      ]
+      }
+   ]
+   }
+]
 }
 ```
 

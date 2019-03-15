@@ -34,16 +34,24 @@ void XMLMarshaller::manipulate(EntityComposite & entity, int level) {
    if (level == 0) {
       out << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" << std::endl;
    }
-   // 14 is the length of <entity name=".
-   out << std::setw((level*3)+14) << "<entity name=\"" << entity.getName()  << "\">" << entity.getValue();
-   if (entity.hasChildren()) {
+   
+   std::string name = "<" + entity.getName();
+   if (entity.getValue().length()> 0) {
+      name += " " + entity.getName() + "-identifier=\"" + entity.getValue() + "\">";
+   } else {
+      name += ">";
+   }
+   int entityNameLength = name.length();
+   out << std::setw((level*3)+entityNameLength) << name;
+   if (entity.childCount() > 0) {
       out << std::endl;
       level++;
       entity.passToChildren(*this, level);
       level--;
    }
-   // 9 is the length of </entity>
-   out << (entity.hasChildren() ? std::setw((level*3)+9) : std::setw(0)) << "</entity>" << std::endl;
+   name = "</" + entity.getName() + ">";
+   entityNameLength = name.length();
+   out << (entity.childCount() > 0 ? std::setw((level*3)+entityNameLength) : std::setw(0)) << name << std::endl;
 }
 
 /**
@@ -59,7 +67,8 @@ void XMLMarshaller::manipulate(EntityLeaf & entity, int level) {
    if (level == 0) {
       out << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" << std::endl;
    }
-   out << std::setw((level*3)+14) << "<entity name=\""
-      << entity.getName()  << "\">" << entity.getValue()
-      << "</entity>" << std::endl;
+   const std::string name = "<" + entity.getName() + ">";
+   out << std::setw((level*3)+name.length()) << name
+      << entity.getValue()
+      << "</" << entity.getName() << ">" << std::endl;
 }

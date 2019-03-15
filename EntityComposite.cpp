@@ -53,11 +53,11 @@ void EntityComposite::accept(EntityManipulator & manipulator, int level) {
 
 
 /**
- Check if entity has children.
+ Check how many children the entity has.
  @return True if entity has children.
  */
-bool EntityComposite::hasChildren() const {
-   return !children.empty();
+int EntityComposite::childCount() const {
+   return children.size();
 }
 
 /**
@@ -131,15 +131,12 @@ bool EntityComposite::remove(Entity * child) {
  in EntityComposite::remove(const std::string &) to find an Entity with a given name.
  */
 struct ElementNameMatches {
-   ElementNameMatches(const std::string & name) {
-      withName = name;
+   ElementNameMatches(const std::pair<std::string,std::string> & nameValue) {
+      searchNameValue = nameValue;
    }
-   std::string withName;
+   std::pair<std::string,std::string> searchNameValue;
    bool operator() (const Entity * e) {
-      if (e->getName() == withName) {
-         return true;
-      }
-      return false;
+      return (e->getName() == searchNameValue.first && e->getValue() == searchNameValue.second);
    }
 };
 
@@ -151,9 +148,9 @@ struct ElementNameMatches {
  @param withName A child with this name to remove from this entity.
  @return Returns true if the entity was removed, otherwise false.
  */
-bool EntityComposite::remove(const std::string & withName) {
+bool EntityComposite::remove(const std::pair<std::string,std::string> & nameValue) {
    bool returnValue = false;
-   auto iter = std::find_if(children.begin(), children.end(), ElementNameMatches(withName));
+   auto iter = std::find_if(children.begin(), children.end(), ElementNameMatches(nameValue));
    if (iter != children.end()) {
       Entity * entity = *iter;
       children.remove(*iter);
@@ -163,8 +160,8 @@ bool EntityComposite::remove(const std::string & withName) {
       // child was not an immediate child. Check if one of the children (or their child) has the child.
       // Use a lambda function to go through the children to find and delete the child.
       // std::all_of can be stopped when the child is found by returning false from the lambda.
-      std::all_of(children.begin(), children.end(), [withName, &returnValue](Entity * entity) {
-         if (entity->remove(withName)) {
+      std::all_of(children.begin(), children.end(), [nameValue, &returnValue](Entity * entity) {
+         if (entity->remove(nameValue)) {
             returnValue = true;
             return false;
          } else {

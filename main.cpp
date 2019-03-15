@@ -17,49 +17,66 @@ int main(int argc, const char * argv[])
 {
    // Create a following structure of objects...
    /*
-    root
-    /       \
-    numbers   letters
-    /     \    /      \
-    1      2   A        B
-    /   / \
-    21 A.p  A.q
+             customers
+          /              \
+    customer             customer   ______
+    FooBar Ltd__         Antti Juustila   \_
+   /   |  \     \            /  |   \        \
+id  type street billing    id   type  street  work
+          addr   addr                  addr     addr
+    
+Where street, billing and work addresses have details (street name, post number etc).
     */
    try {
-      EntityComposite rootEntity("root", "The root object");
-      Entity * thing1 = new EntityComposite("numbers", "All the numbers...");
-      rootEntity.add(thing1);
-      Entity * thing2 = new EntityLeaf("1", "The only one");
-      thing1->add(thing2);
-      thing2 = new EntityComposite("2", "Second after one");
-      thing1->add(thing2);
-      thing1 = new EntityLeaf("21", "Ventti");
-      thing2->add(thing1);
       
-      thing1 = new EntityComposite("letters", "a-b-c");
-      rootEntity.add(thing1);
-      thing2 = new EntityLeaf("B", "beta");
-      thing1->add(thing2);
-      thing2 = new EntityComposite("A", "alpha");
-      thing1->add(thing2);
-      thing1 = new EntityLeaf("A.p", "alpha pi");
-      thing2->add(thing1);
-      thing1 = new EntityLeaf("A.q", "alpha queue");
-      thing2->add(thing1);
+      EntityComposite customers("customers", "");
+      // First customer.
+      EntityComposite * customer = new EntityComposite("customer", "FooBar Ltd");
+      customers.add(customer);
+      customer->add(new EntityLeaf("id", "9897765"));
+      customer->add(new EntityLeaf("type", "Company"));
+      EntityComposite * address = new EntityComposite("address", "Billing");
+      customer->add(address);
+      address->add(new EntityLeaf("street", "Technovillage Post Office"));
+      address->add(new EntityLeaf("postnumber", "FI-90570"));
+      address->add(new EntityLeaf("city", "Oulu"));
+      address = new EntityComposite("address", "Street");
+      customer->add(address);
+      address->add(new EntityLeaf("street", "Technology Village Road 11"));
+      address->add(new EntityLeaf("entrance", "B 21"));
+      address->add(new EntityLeaf("postnumber", "FI-90570"));
+      address->add(new EntityLeaf("city", "Oulu"));
+      // Second customer.
+      customer = new EntityComposite("customer", "Antti Juustila");
+      customers.add(customer);
+      customer->add(new EntityLeaf("id", "123456"));
+      customer->add(new EntityLeaf("type", "Person"));
+      address = new EntityComposite("address", "Home");
+      customer->add(address);
+      address->add(new EntityLeaf("street", "Grand Vista Boulevard 125"));
+      address->add(new EntityLeaf("entrance", "A1"));
+      address->add(new EntityLeaf("postnumber", "JE3-10560"));
+      address->add(new EntityLeaf("city", "St Brelades"));
+      address = new EntityComposite("address", "Work");
+      customer->add(address);
+      address->add(new EntityLeaf("street", "Linnanmaa"));
+      address->add(new EntityLeaf("entrance", "R"));
+      address->add(new EntityLeaf("postnumber", "FI-90014"));
+      address->add(new EntityLeaf("city", "Oulun yliopisto"));
       
       // ...and give the marshaller to the root entity.
       std::cout << "Marshal objects to XML..." << std::endl << std::endl;
       // Create the marshaller..
       XMLMarshaller xmlMarshaller(std::cout);
-      rootEntity.accept(xmlMarshaller);
+      customers.accept(xmlMarshaller);
       
       std::cout << std::endl << "Marshal objects to JSON..." << std::endl << std::endl;
       JSONMarshaller jsonMarshaller(std::cout);
-      rootEntity.accept(jsonMarshaller);
+      customers.accept(jsonMarshaller);
       
-      std::cout << "Cloning root entity and removing letters from clone..." << std::endl << std::endl;
-      Entity * newComposite = rootEntity.clone();
-      newComposite->remove("letters");
+      std::cout << "Cloning root entity and removing customer Antti Juustila from clone..." << std::endl << std::endl;
+      Entity * newComposite = customers.clone();
+      newComposite->remove({"customer", "Antti Juustila"});
       std::cout << "Marshal objects to XML..." << std::endl << std::endl;
       newComposite->accept(xmlMarshaller);
       std::cout << std::endl << "Marshal objects to JSON..." << std::endl << std::endl;

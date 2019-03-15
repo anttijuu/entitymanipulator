@@ -43,9 +43,9 @@ public:
    
    virtual void add(Entity * child) = 0;
    virtual bool remove(Entity * child) = 0;
-   virtual bool remove(const std::string & withName) = 0;
+   virtual bool remove(const std::pair<std::string,std::string> & nameValue) = 0;
    
-   virtual bool hasChildren() const = 0;
+   virtual int childCount() const = 0;
    virtual void passToChildren(EntityManipulator & manipulator, int level) = 0;
    virtual bool hasElementsAfter(const Entity * entity) const = 0;
    
