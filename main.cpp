@@ -60,13 +60,13 @@ Where street, billing and work addresses have details (street name, post number 
 }
 
 std::unique_ptr<Entity> createEntities() {
-   std::unique_ptr<EntityComposite> customers(new EntityComposite("customers", ""));
+   std::unique_ptr<Entity> customers(new EntityComposite("customers", ""));
    // First customer.
-   EntityComposite * customer = new EntityComposite("customer", "FooBar Ltd");
+   Entity * customer = new EntityComposite("customer", "FooBar Ltd");
    customers->add(customer);
    customer->add(new EntityLeaf("id", "9897765"));
    customer->add(new EntityLeaf("type", "Company"));
-   EntityComposite * address = new EntityComposite("address", "Billing");
+   Entity * address = new EntityComposite("address", "Billing");
    customer->add(address);
    address->add(new EntityLeaf("street", "Technovillage Post Office"));
    address->add(new EntityLeaf("postnumber", "FI-90570"));

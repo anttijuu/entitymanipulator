@@ -39,15 +39,32 @@ public:
    const std::string & getName() const;
    const std::string & getValue() const;
    
+   /** Accepts a visitor to visit the Entity.
+    @param manipulator The visitor.
+    @param level The level in object hierarchy where the visitor currently is. */
    virtual void accept(EntityManipulator & manipulator, int level = 0) = 0;
-   
+   /** Adds an entity as a child to this entity.
+    @param child The child to add. */
    virtual void add(Entity * child) = 0;
+   /** Removes and deletes a child object from this entity, if it can be found.
+    @param child The child to remove and delete.
+    @return Returns true if the child was found and removed. */
    virtual bool remove(Entity * child) = 0;
+   /** Finds a child entity with name and value and removes and deletes it if found.
+    @param nameValue Name and value pair to look for.
+    @return Returns true if the child object was found, removed and deleted. */
    virtual bool remove(const std::pair<std::string,std::string> & nameValue) = 0;
-   
+   /** Use to check how many child entities this entity has.
+    @return The count of child objects. */
    virtual int childCount() const = 0;
+   /** Passes the visitor to children of this Entity.
+    @param manipulator The visitor to pass
+    @param level The level in object hierarchy visitor currently visits. */
    virtual void passToChildren(EntityManipulator & manipulator, int level) = 0;
-   virtual bool hasElementsAfter(const Entity * entity) const = 0;
+   /** Check if this Entity has child entities after the specified child Entity.
+    @param childEntity The Entity to check
+    @return Returns true if this entity has additional children after childEntity. */
+   virtual bool hasElementsAfter(const Entity * childEntity) const = 0;
    
 private:
    Entity() = delete;

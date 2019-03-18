@@ -44,12 +44,12 @@ void Entity::attach(Entity * parent) {
  Detaches this Entity from any parent. Sets the parent to null.
  */
 void Entity::detach() {
-   this->parent = 0;
+   this->parent = nullptr;
 }
 
 /**
  Returns the parent of this object. Note that the returned pointer may be null.
- @returns The parent pointer, may be null.
+ @returns The parent pointer, may be nullptr.
  */
 Entity * Entity::getParent() {
    return this->parent;
