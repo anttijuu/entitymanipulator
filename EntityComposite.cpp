@@ -27,7 +27,7 @@ EntityComposite::EntityComposite(const EntityComposite & another)
  A desctructor for the Entity. Destroys all it's children if there are any.
  */
 EntityComposite::~EntityComposite() {
-   while (!children.empty() > 0) {
+   while (!children.empty()) {
       delete children.front();
       children.pop_front();
    }
