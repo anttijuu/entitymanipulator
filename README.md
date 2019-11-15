@@ -6,7 +6,7 @@ See the included png file for the class diagram, and study the code to see how t
 
 ![UML class diagram](UML-class-diagram-of-EntityManipulator.png)
 
-In the `main.cpp` an object structure is created. Then code demonstrates two ways (JSON & XML) to externalize the object structure into a stream using *marshallers*. The object structure looks like this:
+In the `main.cpp` an object structure is created. Then code demonstrates three ways (JSON, XML, GraphViz DOT file) to externalize the object structure into a stream using *marshallers*. The object structure looks like this:
 
 ```
              customers
@@ -36,8 +36,16 @@ After installing the tools, do this in the project root directory:
 
 After this, you should have a binary executable EntityManipulatorExe in the build directory.
 
-You can then execute it and see the results:
+You can then execute it `./EntityManipulatorExe` and see the results (below). Additionally, the executable directory contains a `graph.gv` file containing a [GraphViz DOT](https://www.graphviz.org) file representation of the object structure. If you install GraphViz, you can run the DOT tool to view the graph, for example:
 
+```
+dot -Tpng graph.gv -ograph.png
+```
+Creating a png file which looks like this:
+
+![GraphViz generated png file](graph.png)
+
+Below you can see the output of the app when executed. 
 
 ```
 OY1902105:build juustila$ ./EntityManipulatorExe 

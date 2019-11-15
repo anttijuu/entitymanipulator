@@ -11,25 +11,25 @@
 
 
 GraphVizMarshaller::GraphVizMarshaller(std::ostream & outputStream)
-: output(outputStream) {
-   output << "digraph EntityGraph {" << std::endl;
+: out(outputStream) {
+   out << "digraph EntityGraph {" << std::endl;
 }
 
 void GraphVizMarshaller::manipulate(EntityComposite & entity, int level) {
    Entity * parent = entity.getParent();
    if (nullptr != parent) {
-      output << " \"" << parent->getValue() << "\" -> \"" << entity.getValue() << "\"" << std::endl;
+      out << " \"" << parent->getValue() << "\" -> \"" << entity.getValue() << "\"" << std::endl;
    }
    entity.passToChildren(*this, level++);
    if (!parent) {
-      output << "}" << std::endl;
+      out << "}" << std::endl;
    }
 }
 
 void GraphVizMarshaller::manipulate(EntityLeaf & entity, int level) {
    Entity * parent = entity.getParent();
    if (nullptr != parent) {
-      output << " \"" << parent->getValue() << "\" -> \"" << entity.getValue() << "\"" << std::endl;
+      out << " \"" << parent->getValue() << "\" -> \"" << entity.getValue() << "\"" << std::endl;
    }
 }
 

@@ -28,5 +28,5 @@ public:
    
 private:
    
-   std::ostream & output;
+   std::ostream & out;
 };
