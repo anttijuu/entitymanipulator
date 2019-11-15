@@ -12,6 +12,7 @@
 #include "EntityLeaf.h"
 #include "XMLMarshaller.h"
 #include "JSONMarshaller.h"
+#include "GraphVizMarshaller.h"
 
 // Forward declaration of a function.
 std::unique_ptr<Entity> createEntities();
@@ -51,6 +52,12 @@ Where street, billing and work addresses have details (street name, post number 
       newComposite->accept(xmlMarshaller);
       std::cout << std::endl << "Marshal objects to JSON..." << std::endl << std::endl;
       newComposite->accept(jsonMarshaller);
+      
+      std::ofstream file("graph.gv");
+      GraphVizMarshaller graphviz(file);
+      newComposite->accept(graphviz);
+      file.flush();
+      file.close();
       
    } catch (std::exception & e) {
       std::cout << "ERROR: " << e.what() << std::endl;

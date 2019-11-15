@@ -19,6 +19,8 @@ set(EntityManipulator_SRCS
     JSONMarshaller.cpp
     XMLMarshaller.h
     XMLMarshaller.cpp
+    GraphVizMarshaller.h
+    GraphVizMarshaller.cpp
     main.cpp
 )
 
