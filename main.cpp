@@ -44,7 +44,13 @@ Where street, billing and work addresses have details (street name, post number 
       std::cout << std::endl << "Marshal objects to JSON..." << std::endl << std::endl;
       JSONMarshaller jsonMarshaller(std::cout);
       customers->accept(jsonMarshaller);
-      
+
+      std::ofstream file("graph.gv");
+      GraphVizMarshaller graphviz(file);
+      customers->accept(graphviz);
+      file.flush();
+      file.close();
+
       std::cout << "Cloning root entity and removing customer Antti Juustila from clone..." << std::endl << std::endl;
       std::unique_ptr<Entity> newComposite(customers->clone());
       newComposite->remove({"customer", "Antti Juustila"});
@@ -53,11 +59,6 @@ Where street, billing and work addresses have details (street name, post number 
       std::cout << std::endl << "Marshal objects to JSON..." << std::endl << std::endl;
       newComposite->accept(jsonMarshaller);
       
-      std::ofstream file("graph.gv");
-      GraphVizMarshaller graphviz(file);
-      newComposite->accept(graphviz);
-      file.flush();
-      file.close();
       
    } catch (std::exception & e) {
       std::cout << "ERROR: " << e.what() << std::endl;
@@ -67,7 +68,7 @@ Where street, billing and work addresses have details (street name, post number 
 }
 
 std::unique_ptr<Entity> createEntities() {
-   std::unique_ptr<Entity> customers(new EntityComposite("customers", ""));
+   std::unique_ptr<Entity> customers(new EntityComposite("customers", "All Customers"));
    // First customer.
    Entity * customer = new EntityComposite("customer", "FooBar Ltd");
    customers->add(customer);

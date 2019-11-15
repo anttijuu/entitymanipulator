@@ -18,7 +18,7 @@ GraphVizMarshaller::GraphVizMarshaller(std::ostream & outputStream)
 void GraphVizMarshaller::manipulate(EntityComposite & entity, int level) {
    Entity * parent = entity.getParent();
    if (nullptr != parent) {
-      output << " " << parent->getValue() << " -> " << entity.getValue() << std::endl;
+      output << " \"" << parent->getValue() << "\" -> \"" << entity.getValue() << "\"" << std::endl;
    }
    entity.passToChildren(*this, level++);
    if (!parent) {
@@ -29,7 +29,7 @@ void GraphVizMarshaller::manipulate(EntityComposite & entity, int level) {
 void GraphVizMarshaller::manipulate(EntityLeaf & entity, int level) {
    Entity * parent = entity.getParent();
    if (nullptr != parent) {
-      output << " " << parent->getValue() << " -> " << entity.getValue() << std::endl;
+      output << " \"" << parent->getValue() << "\" -> \"" << entity.getValue() << "\"" << std::endl;
    }
 }
 
