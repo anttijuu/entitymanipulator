@@ -34,9 +34,9 @@ After installing the tools, do this in the project root directory:
 3. cmake ..
 4. make
 
-After this, you should have a binary executable EntityManipulatorExe in the build directory.
+After this, you should have a binary executable `EntityManipulatorExe` in the build directory.
 
-You can then execute it `./EntityManipulatorExe` and see the results (below). Additionally, the executable directory contains a `graph.gv` file containing a [GraphViz DOT](https://www.graphviz.org) file representation of the object structure. If you install GraphViz, you can run the DOT tool to view the graph, for example:
+You can then execute it `./EntityManipulatorExe` and see the results (below). Additionally, the executable creates a `graph.gv` file containing a [GraphViz DOT](https://www.graphviz.org) file representation of the object structure. If you install GraphViz (`sudo apt-get install graphviz` on Ubuntu, or on macOS, using homebrew: `brew install graphviz`), you can run the DOT tool to view the graph, for example:
 
 ```
 dot -Tpng graph.gv -ograph.png
