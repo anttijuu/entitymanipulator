@@ -14,10 +14,10 @@ In the `main.cpp` an object structure is created. Then code demonstrates three w
     customer             customer   ______
     FooBar Ltd__         Antti Juustila   \_
    /   |  \     \            /  |   \        \
-id  type street billing    id   type  street  work
+id  type street billing    id   type   home   work
           addr   addr                  addr     addr
     
-Where street, billing and work addresses have details (street name, post number etc).
+Where street, billing, home and work addresses have details (street name, post number etc).
 ```
 
 
