@@ -11,12 +11,17 @@
 
 /**
  Constructor for initializing Entities. Parent entity is set to null.
- @param name A name for the entity.
+ @param n A name for the entity.
+ @param v A value for the entity.
  */
 EntityLeaf::EntityLeaf(const std::string & n, const std::string & v)
 : Entity(n, v) {
 }
 
+/**
+ Constructor for creating a leaf entity as a copy from an existing one.
+ @param another The another object to copy when creating this object.
+ */
 EntityLeaf::EntityLeaf(const EntityLeaf & another)
 : Entity(another) {
 }
@@ -27,7 +32,10 @@ EntityLeaf::EntityLeaf(const EntityLeaf & another)
 EntityLeaf::~EntityLeaf() {
 }
 
-
+/**
+ Creates a copy of this entity object using copy constructor.
+ @return A new Leaf entity as a copy of this one.
+ */
 Entity * EntityLeaf::clone() {
    return new EntityLeaf(*this);
 }
@@ -35,6 +43,7 @@ Entity * EntityLeaf::clone() {
 /**
  Accepts an EntityManipulator to manipulate this entity.
  @param manipulator A manipulator to accept as a visitor.
+ @param level A level where this object is now in the object hierarchy.
  */
 void EntityLeaf::accept(EntityManipulator & manipulator, int level) {
    manipulator.manipulate(*this, level);
@@ -42,7 +51,7 @@ void EntityLeaf::accept(EntityManipulator & manipulator, int level) {
 
 /**
  Check the Entity's child count which is always zero for a Leaf entity.
- @returns Zero (0), since Leaf entity does not have children.
+ @return Zero (0), since Leaf entity does not have children.
  */
 int EntityLeaf::childCount() const {
    return 0;
@@ -85,7 +94,7 @@ bool EntityLeaf::remove(Entity * /*child*/) {
 
 /**
  Leaf entity has no children so exception is thrown if called.
- @param child A child to remove from this entity. Since the operation is not possible, an exception
+ @param nameValue A child to remove from this entity. Since the operation is not possible, an exception
  is thrown to indicate a logic error in attempting to remove children from leaf Entity.
  */
 bool EntityLeaf::remove(const std::pair<std::string,std::string> & /*nameValue*/) {

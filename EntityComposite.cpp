@@ -18,6 +18,10 @@ EntityComposite::EntityComposite(const std::string & n, const std::string & v)
 : Entity(n, v) {
 }
 
+/**
+ Constructs a composite entity as a copy of another composite entity.
+ @param another The entity to copy to this newly created entity.
+ */
 EntityComposite::EntityComposite(const EntityComposite & another)
 : Entity(another) {
    std::for_each(another.children.begin(), another.children.end(), [this](Entity * entity) { add(entity->clone()); });
@@ -131,10 +135,20 @@ bool EntityComposite::remove(Entity * child) {
  in EntityComposite::remove(const std::string &) to find an Entity with a given name.
  */
 struct ElementNameMatches {
+   /**
+    Constructs the search element by providing a pair of strings to compare to Entity.name and Entity.value.
+    @param nameValue The name and value strings to compare an Entity to.
+    */
    ElementNameMatches(const std::pair<std::string,std::string> & nameValue) {
       searchNameValue = nameValue;
    }
+   /**
+    Stores the name and value of the Entity to search for.
+    */
    std::pair<std::string,std::string> searchNameValue;
+   /**
+    Does the actual comparison of the string pair to Entity object.
+    */
    bool operator() (const Entity * e) {
       return (e->getName() == searchNameValue.first && e->getValue() == searchNameValue.second);
    }
@@ -145,7 +159,7 @@ struct ElementNameMatches {
  If the child is not an immediate child of this entity, then it is given
  to the children to be removed from there, if it is found.
  If the child is a Composite, removes and deletes the children too.
- @param withName A child with this name to remove from this entity.
+ @param nameValue A child with the equal name and value properties to remove from this entity.
  @return Returns true if the entity was removed, otherwise false.
  */
 bool EntityComposite::remove(const std::pair<std::string,std::string> & nameValue) {

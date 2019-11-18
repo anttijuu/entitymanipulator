@@ -31,6 +31,10 @@ public:
    Entity(const Entity & another);
    virtual ~Entity();
 
+   /**
+   Abstract method for implementing the Prototype design patter in subclasses.
+    @return Return the Entity subclass object, copy of the original.
+    */
    virtual Entity * clone() = 0;
    
    void attach(Entity * parent);

@@ -24,9 +24,9 @@ public:
    
    virtual void manipulate(EntityComposite & entity, int level) override;
    virtual void manipulate(EntityLeaf & entity, int level) override;
-   virtual ~GraphVizMarshaller() override;
    
 private:
    
+   /** The output stream where to this object is streamed. */
    std::ostream & out;
 };

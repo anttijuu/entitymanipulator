@@ -24,8 +24,15 @@ class EntityLeaf;
  */
 class EntityManipulator {
 public:
-   /** The pure virtual methods for visiting Entities defined in this interface class. Must be overridden by implementors. */
+   /** The pure virtual method for visiting Composite Entities defined in this interface class. Must be overridden by implementors.
+        @param entity Entity to visit and manipulate.
+        @param level The level of object hierarchy the manipulator is currently traversing.
+    */
    virtual void manipulate(EntityComposite & entity, int level) = 0;
+   /** The pure virtual method for visiting Leaf Entities (with no child objects) defined in this interface class. Must be overridden by implementors.
+    @param entity Entity to visit and manipulate.
+    @param level The level of object hierarchy the manipulator is currently traversing.
+    */
    virtual void manipulate(EntityLeaf & entity, int level) = 0;
    /** Destructor for the manipulator. It is always a good habit of defining
     destructor as virtual for base and interface classes in C++. */

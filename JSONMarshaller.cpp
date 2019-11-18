@@ -18,7 +18,7 @@
  to a member variable. It is done in the initialization list -- all reference member
  variables must be initialized in the constructor's initialization list. As well as const
  members.
- @param outStream The output stream where to print stuff.
+ @param os The output stream where to print stuff.
  */
 JSONMarshaller::JSONMarshaller(std::ostream & os) : out(os) {
 }
