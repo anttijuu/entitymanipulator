@@ -34,32 +34,55 @@ JSONMarshaller::JSONMarshaller(std::ostream & os) : out(os) {
  */
 void JSONMarshaller::manipulate(EntityComposite & entity, int level) {
    int baseWidth = level * 3;
-   
-   out << std::setw(baseWidth+1) << "{" << std::endl;
-   
-   std::string name = "\"" + entity.getName() + "\" : [";
-   int entityNameLength = name.length();
-   out << std::setw(baseWidth+entityNameLength) << name << std::endl;
-   
+
+	const Entity * parent = entity.getParent();
+	bool isArray = entity.entitiesAreRepeating();
+
+	std::string opener = "{";
+	if (parent == nullptr) {
+		if (isArray) {
+			opener = "[";
+		}
+		out << std::setw(baseWidth) << opener << "\n";
+	} else {
+		if (isArray) {
+			opener = "[";
+			std::string name = "\"" + entity.getName() + "\" : " + opener;
+			int entityNameLength = (int)name.length();
+			out << std::setw(baseWidth+entityNameLength) << name << "\n";
+		} else {
+			out << std::setw(baseWidth+1) << opener << "\n";
+			std::string value = entity.getValue();
+			if (value.length() > 0) {
+				baseWidth = ++level * 3;
+				std::string output = "\"" + entity.getName() + "-description\" : \"" + value + "\",";
+				out << std::setw(baseWidth+(int)output.length()) << output<< "\n";
+				baseWidth = --level * 3;
+			}
+		}
+	}
    if (entity.childCount() > 0) {
-      std::string value = entity.getValue();
-      baseWidth = ++level * 3;
-      if (value.length() > 0) {
-         name = "{ \"" + entity.getName() + "-name\" : \"" + value + "\"";
-         out << std::setw(baseWidth+name.length()) << name << " }," << std::endl;
-      }
-      entity.passToChildren(*this, level);
-      baseWidth = --level * 3;
-   } else {
-      
+      entity.passToChildren(*this, ++level);
    }
-   out << std::setw(baseWidth+1) << "]" << std::endl;
-   const Entity * parent = entity.getParent();
-   if (parent != nullptr && parent->hasElementsAfter(&entity)) {
-      out << std::setw(baseWidth+2) << "}," << std::endl;
-   } else {
-      out << std::setw(baseWidth+1) << "}" << std::endl;
-   }
+	std::string terminator = "}";
+	if (isArray) {
+		terminator = "]";
+	}
+	if (parent == nullptr) {
+		baseWidth = --level * 3;
+		out << std::setw(baseWidth+1) << terminator << "\n";
+	} else {
+		baseWidth = --level * 3;
+		if (parent->hasElementsAfter(&entity)) {
+			out << std::setw(baseWidth+1) << terminator << "," << "\n";
+		} else {
+			if (isArray) {
+				out << std::setw(baseWidth+1) << "]" << "\n";
+			} else {
+				out << std::setw(baseWidth+1) << "}" << "\n";
+			}
+		}
+	}
 }
 
 /**
@@ -73,23 +96,19 @@ void JSONMarshaller::manipulate(EntityComposite & entity, int level) {
  */
 void JSONMarshaller::manipulate(EntityLeaf & entity, int level) {
    int baseWidth = level * 3;
-   std::string name = "{ \"" + entity.getName() + "\" : ";
-   int entityNameLength = name.length();
+   std::string name = "\"" + entity.getName() + "\" : ";
+   int entityNameLength = (int)name.length();
    out << std::setw(baseWidth+entityNameLength) << name;
    std::string value = entity.getValue();
    if (value.length() > 0) {
-      out << "\"" << entity.getValue() << "\" }";
-   } else {
-      out << "}" << std::endl;
+      out << "\"" << entity.getValue() << "\"";
    }
    const Entity * parent = entity.getParent();
    if (parent != nullptr) {
       if (parent->hasElementsAfter(&entity)) {
-         out <<  "," << std::endl;
+         out <<  "," << "\n";
       } else {
-         out << std::endl;
+         out << "\n";
       }
-   } else {
-      out << "}" << std::endl;
    }
 }

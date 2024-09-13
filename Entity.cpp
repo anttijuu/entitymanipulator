@@ -51,8 +51,17 @@ void Entity::detach() {
  Returns the parent of this object. Note that the returned pointer may be null.
  @returns The parent pointer, may be nullptr.
  */
-Entity * Entity::getParent() {
+const Entity * Entity::getParent() const {
    return this->parent;
+}
+
+/**
+ Non-const version. Returns the parent of this object. Note that the returned pointer may be null.
+ @returns The parent pointer, may be nullptr.
+ */
+
+Entity * Entity::getParent() {
+	return this->parent;
 }
 
 

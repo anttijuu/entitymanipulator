@@ -1,0 +1,7 @@
+<map id="Entity" name="Entity">
+<area shape="rect" id="Node000001" title=" " alt="" coords="131,5,231,271"/>
+<area shape="rect" id="Node000002" href="$class_entity_composite.html" title=" " alt="" coords="5,319,177,644"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="145,286,136,320,131,319,140,285"/>
+<area shape="rect" id="Node000003" href="$class_entity_leaf.html" title=" " alt="" coords="202,349,338,614"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="221,284,238,348,233,350,216,286"/>
+</map>

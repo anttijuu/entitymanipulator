@@ -9,7 +9,9 @@
 
 #include <string_view>
 #include <fstream>
+#include <unordered_map>
 
+#include "Entity.h"
 #include "EntityManipulator.h"
 
 /**
@@ -29,4 +31,6 @@ private:
    
    /** The output stream where to this object is streamed. */
    std::ostream & out;
+
+	std::unordered_map<std::size_t, std::shared_ptr<Entity>> entityIDs;
 };

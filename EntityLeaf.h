@@ -32,7 +32,7 @@ public:
    virtual void accept(EntityManipulator & manipulator, int level = 0) override;
    void add(Entity * child) override;
    bool remove(Entity * child) override;
-   virtual bool remove(const std::pair<std::string,std::string> & nameValue) override;
+   virtual bool remove(const std::pair<std::string,std::string> & nameValue, bool removeParent = false) override;
    
    int childCount() const override;
    void passToChildren(EntityManipulator & manipulator, int level) override;

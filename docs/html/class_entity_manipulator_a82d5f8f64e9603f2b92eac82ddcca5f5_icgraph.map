@@ -1,0 +1,7 @@
+<map id="EntityManipulator::manipulate" name="EntityManipulator::manipulate">
+<area shape="rect" id="Node000001" title=" " alt="" coords="219,23,349,64"/>
+<area shape="rect" id="Node000002" href="$class_entity_composite.html#ac77d47af3d784c380611330625830ec0" title=" " alt="" coords="5,5,171,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="203,36,171,32,172,26,203,30"/>
+<area shape="rect" id="Node000003" href="$class_entity_leaf.html#aeae7195675b225d7e7113d0520898163" title=" " alt="" coords="24,55,152,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="204,56,152,62,152,57,203,51"/>
+</map>

@@ -23,7 +23,8 @@ class EntityManipulator;
  */
 class EntityComposite : public Entity {
 public:
-   EntityComposite(const std::string & n, const std::string & v);
+	EntityComposite(const std::string & n);
+	EntityComposite(const std::string & n, const std::string & v);
    EntityComposite(const EntityComposite & another);
    virtual ~EntityComposite();
    
@@ -32,12 +33,15 @@ public:
    virtual void accept(EntityManipulator & manipulator, int level = 0) override;
    virtual void add(Entity * child) override;
    virtual bool remove(Entity * child) override;
-   virtual bool remove(const std::pair<std::string,std::string> & nameValue) override;
+   virtual bool remove(const std::pair<std::string,std::string> & nameValue, bool removeParent = false) override;
    
    virtual int childCount() const override;
    virtual void passToChildren(EntityManipulator & manipulator, int level) override;
    virtual bool hasElementsAfter(const Entity * entity) const override;
    
+	bool entitiesAreRepeating();
+	void setEntitiesAreRepeating(bool repeating);
+
 private:
    EntityComposite() = delete;
    
@@ -45,6 +49,7 @@ private:
    /** The child Entities of the Composite Entity. */
    EntityCollection children;
    
+	bool repeatingEntities;
 };
 
 // EOF

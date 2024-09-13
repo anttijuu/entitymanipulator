@@ -97,7 +97,7 @@ bool EntityLeaf::remove(Entity * /*child*/) {
  @param nameValue A child to remove from this entity. Since the operation is not possible, an exception
  is thrown to indicate a logic error in attempting to remove children from leaf Entity.
  */
-bool EntityLeaf::remove(const std::pair<std::string,std::string> & /*nameValue*/) {
+bool EntityLeaf::remove(const std::pair<std::string,std::string> & /*nameValue*/, bool) {
    throw std::logic_error("Cannot remove children from Leaf Entity");
    return false;
 }

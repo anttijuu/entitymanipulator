@@ -1,0 +1,9 @@
+<map id="EntityComposite::passToChildren" name="EntityComposite::passToChildren">
+<area shape="rect" id="Node000001" title=" " alt="" coords="242,70,458,96"/>
+<area shape="rect" id="Node000002" href="$class_graph_viz_marshaller.html#a5d110181dad0577f754cd1e181ac884d" title=" " alt="" coords="32,5,167,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="275,69,167,44,168,39,276,64"/>
+<area shape="rect" id="Node000003" href="$class_j_s_o_n_marshaller.html#a659b6e606e873f243a412890dca1a0c8" title=" " alt="" coords="5,70,194,96"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="226,86,194,86,194,80,226,80"/>
+<area shape="rect" id="Node000004" href="$class_x_m_l_marshaller.html#a0194f9db838c82142cabf095ab88fd20" title=" " alt="" coords="10,120,189,145"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="267,102,169,121,168,116,266,97"/>
+</map>

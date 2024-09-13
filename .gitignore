@@ -1,2 +1,5 @@
 build/
 xcode/
+ninja/
+.DS_Store
+

@@ -1,0 +1,6 @@
+<map id="EntityLeaf::EntityLeaf" name="EntityLeaf::EntityLeaf">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,29,153,55"/>
+<area shape="rect" id="Node000002" href="$class_entity_leaf.html#a2215d67691edd6c09b422575f2663e05" title=" " alt="" coords="201,29,348,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="153,40,185,40,185,45,153,45"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="242,30,235,21,239,11,252,5,274,3,298,5,311,12,308,17,297,10,274,8,254,10,243,15,240,20,246,27"/>
+</map>

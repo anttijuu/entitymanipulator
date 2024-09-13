@@ -9,6 +9,22 @@
 #include "EntityComposite.h"
 #include "EntityLeaf.h"
 
+template<>
+struct std::hash<Entity>
+{
+	std::size_t operator()(const Entity& entity) const noexcept
+	{
+		std::size_t h1 = std::hash<std::string>{}(entity.getName());
+		std::size_t h2 = std::hash<std::string>{}(entity.getValue());
+		std::size_t h3 = 0;
+		const Entity * parent = entity.getParent();
+		if (parent != nullptr) {
+			h3 = std::hash<Entity>{}(*parent);
+		}
+		return h1 ^ (h2 << 1) ^ (h3 << 2);
+	}
+};
+
 /**
  The constructor for the GraphVizMarshaller. It stores the reference to output stream
  to a member variable. It is done in the initialization list -- all reference member
@@ -18,8 +34,8 @@
  */
 GraphVizMarshaller::GraphVizMarshaller(std::ostream & outputStream)
 : out(outputStream) {
-   out << "digraph EntityGraph {" << std::endl;
-   out << " node [color=antiquewhite2,style=filled];" << std::endl;
+   out << "digraph EntityGraph {" << "\n";
+   out << " node [color=antiquewhite2,style=filled];" << "\n";
 }
 
 /**
@@ -35,16 +51,17 @@ void GraphVizMarshaller::manipulate(EntityComposite & entity, int level) {
    Entity * parent = entity.getParent();
    std::string shape;
    if (nullptr != parent) {
-      out << " \"" << parent->getValue() << "\" -> \"" << entity.getValue() << "\";" << std::endl;
+		out << "\"" << std::hash<Entity>{}(*parent) << "\" -> \"" << std::hash<Entity>{}(entity) << "\";\n";
+      // out << " \"" << parent->getValue() << "\" -> \"" << entity.getValue() << "\";" << "\n";
       shape = "box";
    } else {
       shape = "Mdiamond";
    }
-   out << " \"" << entity.getValue() << "\" [shape=\"" << shape << "\"";
-   out << ",label=\"" << entity.getName() << ":" << entity.getValue() << "\"];" << std::endl;
+   out << " \"" << std::hash<Entity>{}(entity) << "\" [shape=\"" << shape << "\"";
+   out << ",label=\"" << entity.getName() << ":" << entity.getValue() << "\"];" << "\n";
    entity.passToChildren(*this, level++);
    if (!parent) {
-      out << "}" << std::endl;
+      out << "}" << "\n";
    }
 }
 
@@ -60,9 +77,9 @@ void GraphVizMarshaller::manipulate(EntityComposite & entity, int level) {
 void GraphVizMarshaller::manipulate(EntityLeaf & entity, int level) {
    Entity * parent = entity.getParent();
    if (nullptr != parent) {
-      out << " \"" << parent->getValue() << "\" -> \"" << entity.getValue() << "\"" << std::endl;
+      out << " \"" << std::hash<Entity>{}(*parent) << "\" -> \"" << std::hash<Entity>{}(entity) << "\"" << "\n";
    }
-   out << " \"" << entity.getValue() << "\" [label=\"" << entity.getName() << ":" << entity.getValue() << "\"];" << std::endl;
+	out << " \"" << std::hash<Entity>{}(entity) << "\" [label=\"" << entity.getName() << ":" << entity.getValue() << "\"];" << "\n";
 }
 
 

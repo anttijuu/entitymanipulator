@@ -1,0 +1,9 @@
+<map id="GraphVizMarshaller::manipulate" name="GraphVizMarshaller::manipulate">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,47,141,88"/>
+<area shape="rect" id="Node000002" href="$class_entity.html#a9bf34f4b3eaf2d1ee48ad73d7db9c5f1" title=" " alt="" coords="190,5,306,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="140,46,185,33,186,38,142,51"/>
+<area shape="rect" id="Node000003" href="$class_entity.html#a112d8405932b8718b4b5c4b4bcde5b41" title=" " alt="" coords="189,55,308,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="141,65,173,65,173,70,141,70"/>
+<area shape="rect" id="Node000004" href="$class_entity.html#a7bd669c8651835dcf007df3929e3b445" title=" " alt="" coords="192,104,305,130"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="142,84,186,97,185,102,140,89"/>
+</map>

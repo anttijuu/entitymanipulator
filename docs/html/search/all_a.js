@@ -1,0 +1,4 @@
+var searchData=
+[
+  ['remove_0',['remove',['../class_entity.html#acef41c7319c330fd51730a8e401d8389',1,'Entity::remove(Entity *child)=0'],['../class_entity.html#af3499fcf0a707f8c94cc15230c83fc8b',1,'Entity::remove(const std::pair&lt; std::string, std::string &gt; &amp;nameValue, bool removeParent=false)=0'],['../class_entity_composite.html#a0f0588ee69ad529956be2b8d76360a00',1,'EntityComposite::remove(Entity *child) override'],['../class_entity_composite.html#ac53e797e9a9d2f4f3cd8516032b1bbcf',1,'EntityComposite::remove(const std::pair&lt; std::string, std::string &gt; &amp;nameValue, bool removeParent=false) override'],['../class_entity_leaf.html#a4c210c4a914e31393bbcfa9ec93a9272',1,'EntityLeaf::remove(Entity *child) override'],['../class_entity_leaf.html#a20dec1cd614c1f9ab7ad87252d4457a9',1,'EntityLeaf::remove(const std::pair&lt; std::string, std::string &gt; &amp;nameValue, bool removeParent=false) override']]]
+];
